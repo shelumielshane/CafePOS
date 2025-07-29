@@ -125,6 +125,7 @@
                                 <th class="border border-gray-300 px-4 py-2 text-left">Order #</th>
                                 <th class="border border-gray-300 px-4 py-2 text-left">Customer</th>
                                 <th class="border border-gray-300 px-4 py-2 text-left">Date & Time</th>
+                                <th class="border border-gray-300 px-4 py-2 text-center">Type</th>
                                 <th class="border border-gray-300 px-4 py-2 text-center">Items</th>
                                 <th class="border border-gray-300 px-4 py-2 text-right">Total</th>
                                 <th class="border border-gray-300 px-4 py-2 text-center">Payment</th>
@@ -133,7 +134,7 @@
                         </thead>
                         <tbody id="salesHistoryTable">
                             <tr>
-                                <td colspan="6" class="border border-gray-300 px-4 py-8 text-center text-gray-500">No sales data available</td>
+                                <td colspan="8" class="border border-gray-300 px-4 py-8 text-center text-gray-500">No sales data available</td>
                             </tr>
                         </tbody>
                     </table>
@@ -179,7 +180,7 @@
                 <h2 class="text-2xl font-semibold text-gray-800 mb-4">🧾 New Order</h2>
                 
                 <!-- Order Header -->
-                <div class="grid md:grid-cols-3 gap-4 mb-6 p-4 bg-amber-50 rounded-lg">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 p-4 bg-amber-50 rounded-lg">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Order Number</label>
                         <input type="text" id="orderNumber" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent" readonly>
@@ -197,15 +198,15 @@
                 <!-- Add Items Section -->
                 <div class="mb-6">
                     <h3 class="text-lg font-medium text-gray-700 mb-3">Add Items to Order</h3>
-                    <div class="grid md:grid-cols-4 gap-3 p-4 bg-gray-50 rounded-lg">
-                        <select id="productSelect" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-3 p-4 bg-gray-50 rounded-lg">
+                        <select id="productSelect" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent">
                             <option value="">Select Product</option>
                         </select>
-                        <input type="number" id="quantity" placeholder="Quantity" min="1" value="1" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent">
-                        <div class="px-3 py-2 bg-white border border-gray-300 rounded-lg">
+                        <input type="number" id="quantity" placeholder="Quantity" min="1" value="1" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent">
+                        <div class="w-full px-3 py-2 bg-white border border-gray-300 rounded-lg">
                             <span class="text-gray-600">Rate: ₹</span><span id="selectedRate">0.00</span>
                         </div>
-                        <button onclick="addToOrder()" class="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">Add Item</button>
+                        <button onclick="addToOrder()" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">Add Item</button>
                     </div>
                 </div>
 
@@ -240,6 +241,13 @@
                             <select id="paymentMode" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent">
                                 <option value="Cash">Cash</option>
                                 <option value="Online">Online</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Order Type</label>
+                            <select id="orderType" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent">
+                                <option value="Dine In">🍽️ Dine In</option>
+                                <option value="Takeaway">📦 Takeaway</option>
                             </select>
                         </div>
                         <button onclick="completeOrder()" class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors font-medium text-lg">Complete & Print Order</button>
@@ -732,6 +740,7 @@
         function completeOrder() {
             const customerName = document.getElementById('customerName').value.trim();
             const paymentMode = document.getElementById('paymentMode').value;
+            const orderType = document.getElementById('orderType').value;
 
             if (!customerName) {
                 alert('Please enter customer name');
@@ -748,6 +757,7 @@
                 orderNumber: document.getElementById('orderNumber').value,
                 customerName: customerName,
                 dateTime: document.getElementById('orderDateTime').value,
+                orderType: orderType,
                 items: [...orderItems],
                 total: parseFloat(document.getElementById('totalAmount').textContent),
                 paymentMode: paymentMode,
@@ -813,18 +823,20 @@
             const tbody = document.getElementById('salesHistoryTable');
             
             if (filteredSales.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="7" class="border border-gray-300 px-4 py-8 text-center text-gray-500">No sales data available</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="8" class="border border-gray-300 px-4 py-8 text-center text-gray-500">No sales data available</td></tr>';
                 return;
             }
 
             let html = '';
             filteredSales.reverse().forEach((sale, index) => {
                 const itemCount = sale.items.reduce((sum, item) => sum + item.quantity, 0);
+                const orderTypeIcon = sale.orderType === 'Takeaway' ? '📦' : '🍽️';
                 html += `
                     <tr>
                         <td class="border border-gray-300 px-4 py-2">${sale.orderNumber}</td>
                         <td class="border border-gray-300 px-4 py-2">${sale.customerName}</td>
                         <td class="border border-gray-300 px-4 py-2">${sale.dateTime}</td>
+                        <td class="border border-gray-300 px-4 py-2 text-center">${orderTypeIcon} ${sale.orderType || 'Dine In'}</td>
                         <td class="border border-gray-300 px-4 py-2 text-center">${itemCount}</td>
                         <td class="border border-gray-300 px-4 py-2 text-right">₹${sale.total.toFixed(2)}</td>
                         <td class="border border-gray-300 px-4 py-2 text-center">${sale.paymentMode}</td>
@@ -932,6 +944,7 @@
             const orderNumber = document.getElementById('orderNumber').value;
             const customerName = document.getElementById('customerName').value;
             const orderDateTime = document.getElementById('orderDateTime').value;
+            const orderType = document.getElementById('orderType').value;
             const paymentMode = document.getElementById('paymentMode').value;
             const total = document.getElementById('totalAmount').textContent;
 
@@ -953,6 +966,9 @@
                         </div>
                         <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
                             <strong>Customer:</strong> <span>${customerName}</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                            <strong>Type:</strong> <span>${orderType === 'Takeaway' ? '📦 Takeaway' : '🍽️ Dine In'}</span>
                         </div>
                         <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
                             <strong>Date:</strong> <span>${new Date().toLocaleDateString('en-IN')}</span>
@@ -1022,17 +1038,43 @@
         }
 
         function printReceipt() {
-            // Set the print area content
-            document.getElementById('printArea').innerHTML = currentReceiptHTML;
-            document.getElementById('printArea').style.display = 'block';
+            // Create a new window for printing to avoid browser blocking
+            const printWindow = window.open('', '_blank', 'width=400,height=600');
             
-            // Print the receipt
-            window.print();
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Receipt - Hope Cafe</title>
+                    <style>
+                        @media print {
+                            body { margin: 0; padding: 0; }
+                            .no-print { display: none !important; }
+                        }
+                        body { 
+                            font-family: 'Courier New', monospace; 
+                            margin: 0; 
+                            padding: 20px;
+                            background: white;
+                        }
+                    </style>
+                </head>
+                <body>
+                    ${currentReceiptHTML}
+                    <div class="no-print" style="text-align: center; margin-top: 20px;">
+                        <button onclick="window.print()" style="background: #d92620; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer;">🖨️ Print Receipt</button>
+                        <button onclick="window.close()" style="background: #666; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; margin-left: 10px;">✕ Close</button>
+                    </div>
+                </body>
+                </html>
+            `);
             
-            // Hide print area after printing
+            printWindow.document.close();
+            
+            // Auto-print after a short delay
             setTimeout(() => {
-                document.getElementById('printArea').style.display = 'none';
-            }, 1000);
+                printWindow.print();
+            }, 500);
         }
 
         // Bluetooth thermal printer support
@@ -1119,6 +1161,9 @@
                             <strong>Customer:</strong> <span>${sale.customerName}</span>
                         </div>
                         <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                            <strong>Type:</strong> <span>${(sale.orderType === 'Takeaway' ? '📦 Takeaway' : '🍽️ Dine In')}</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
                             <strong>Date:</strong> <span>${new Date(sale.timestamp).toLocaleDateString('en-IN')}</span>
                         </div>
                         <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
@@ -1177,20 +1222,49 @@
                 </div>
             `;
 
-            // Set the print area content and print
-            document.getElementById('printArea').innerHTML = receiptHTML;
-            document.getElementById('printArea').style.display = 'block';
+            // Create a new window for reprinting to avoid browser blocking
+            const printWindow = window.open('', '_blank', 'width=400,height=600');
             
-            window.print();
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Receipt Reprint - Hope Cafe</title>
+                    <style>
+                        @media print {
+                            body { margin: 0; padding: 0; }
+                            .no-print { display: none !important; }
+                        }
+                        body { 
+                            font-family: 'Courier New', monospace; 
+                            margin: 0; 
+                            padding: 20px;
+                            background: white;
+                        }
+                    </style>
+                </head>
+                <body>
+                    ${receiptHTML}
+                    <div class="no-print" style="text-align: center; margin-top: 20px;">
+                        <button onclick="window.print()" style="background: #d92620; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer;">🖨️ Print Receipt</button>
+                        <button onclick="window.close()" style="background: #666; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; margin-left: 10px;">✕ Close</button>
+                    </div>
+                </body>
+                </html>
+            `);
             
+            printWindow.document.close();
+            
+            // Auto-print after a short delay
             setTimeout(() => {
-                document.getElementById('printArea').style.display = 'none';
-            }, 1000);
+                printWindow.print();
+            }, 500);
         }
 
         function clearOrder() {
             orderItems = [];
             document.getElementById('customerName').value = '';
+            document.getElementById('orderType').value = 'Dine In';
             document.getElementById('paymentMode').value = 'Cash';
             document.getElementById('productSelect').value = '';
             document.getElementById('quantity').value = '1';
@@ -1200,5 +1274,5 @@
             updateOrderSummary();
         }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'966dd1e1a6304981',t:'MTc1MzgwNDcyOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'966de65444e2c728',t:'MTc1MzgwNTU2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
