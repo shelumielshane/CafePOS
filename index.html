@@ -128,6 +128,7 @@
                                 <th class="border border-gray-300 px-4 py-2 text-center">Items</th>
                                 <th class="border border-gray-300 px-4 py-2 text-right">Total</th>
                                 <th class="border border-gray-300 px-4 py-2 text-center">Payment</th>
+                                <th class="border border-gray-300 px-4 py-2 text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody id="salesHistoryTable">
@@ -756,8 +757,9 @@
             salesHistory.push(orderData);
             saveDataToStorage();
 
-            // Generate and print receipt
-            printReceipt();
+            // Generate receipt and show print options
+            generateReceipt();
+            showPrintOptions();
 
             // Reset for next order
             orderCounter++;
@@ -811,12 +813,12 @@
             const tbody = document.getElementById('salesHistoryTable');
             
             if (filteredSales.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="6" class="border border-gray-300 px-4 py-8 text-center text-gray-500">No sales data available</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="7" class="border border-gray-300 px-4 py-8 text-center text-gray-500">No sales data available</td></tr>';
                 return;
             }
 
             let html = '';
-            filteredSales.reverse().forEach(sale => {
+            filteredSales.reverse().forEach((sale, index) => {
                 const itemCount = sale.items.reduce((sum, item) => sum + item.quantity, 0);
                 html += `
                     <tr>
@@ -826,6 +828,9 @@
                         <td class="border border-gray-300 px-4 py-2 text-center">${itemCount}</td>
                         <td class="border border-gray-300 px-4 py-2 text-right">₹${sale.total.toFixed(2)}</td>
                         <td class="border border-gray-300 px-4 py-2 text-center">${sale.paymentMode}</td>
+                        <td class="border border-gray-300 px-4 py-2 text-center">
+                            <button onclick="reprintReceipt(${salesHistory.indexOf(sale)})" class="bg-blue-600 text-white px-2 py-1 rounded text-sm hover:bg-blue-700">Print</button>
+                        </td>
                     </tr>
                 `;
             });
@@ -921,7 +926,9 @@
             }
         }
 
-        function printReceipt() {
+        let currentReceiptHTML = '';
+
+        function generateReceipt() {
             const orderNumber = document.getElementById('orderNumber').value;
             const customerName = document.getElementById('customerName').value;
             const orderDateTime = document.getElementById('orderDateTime').value;
@@ -929,7 +936,7 @@
             const total = document.getElementById('totalAmount').textContent;
 
             // Create receipt HTML optimized for desktop printing
-            let receiptHTML = `
+            currentReceiptHTML = `
                 <div style="width: 300px; margin: 0 auto; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.4; color: #000; background: #fff; padding: 20px;">
                     <!-- Header -->
                     <div style="text-align: center; margin-bottom: 15px; border-bottom: 2px solid #000; padding-bottom: 10px;">
@@ -974,7 +981,7 @@
                     <div style="margin-bottom: 15px;">`;
 
             orderItems.forEach(item => {
-                receiptHTML += `
+                currentReceiptHTML += `
                     <div style="font-size: 11px; margin-bottom: 5px; padding: 3px 0;">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <span style="width: 45%; font-weight: 500;">${item.name}</span>
@@ -985,7 +992,7 @@
                     </div>`;
             });
 
-            receiptHTML += `
+            currentReceiptHTML += `
                     </div>
                     
                     <div style="border-top: 2px solid #000; margin: 15px 0; padding-top: 10px;">
@@ -1004,9 +1011,19 @@
                     </div>
                 </div>
             `;
+        }
 
+        function showPrintOptions() {
+            const printChoice = confirm(`✅ Order completed successfully!\n\n🖨️ Would you like to print the receipt now?\n\n• Click OK to print\n• Click Cancel to skip printing\n\nYou can also print later from Sales History.`);
+            
+            if (printChoice) {
+                printReceipt();
+            }
+        }
+
+        function printReceipt() {
             // Set the print area content
-            document.getElementById('printArea').innerHTML = receiptHTML;
+            document.getElementById('printArea').innerHTML = currentReceiptHTML;
             document.getElementById('printArea').style.display = 'block';
             
             // Print the receipt
@@ -1075,6 +1092,102 @@
             alert(tips);
         }
 
+        function reprintReceipt(saleIndex) {
+            const sale = salesHistory[saleIndex];
+            if (!sale) {
+                alert('Receipt not found');
+                return;
+            }
+
+            // Generate receipt HTML for the selected sale
+            let receiptHTML = `
+                <div style="width: 300px; margin: 0 auto; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.4; color: #000; background: #fff; padding: 20px;">
+                    <!-- Header -->
+                    <div style="text-align: center; margin-bottom: 15px; border-bottom: 2px solid #000; padding-bottom: 10px;">
+                        <div style="font-size: 20px; font-weight: bold; margin-bottom: 5px;">☕ HOPE CAFE</div>
+                        <div style="font-size: 12px; margin-bottom: 2px;">123 Main Street, Your City</div>
+                        <div style="font-size: 12px; margin-bottom: 2px;">Phone: +91 98765 43210</div>
+                        <div style="font-size: 12px;">Email: info@hopecafe.com</div>
+                    </div>
+                    
+                    <!-- Order Details -->
+                    <div style="margin-bottom: 15px; font-size: 11px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                            <strong>Order #:</strong> <span>${sale.orderNumber}</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                            <strong>Customer:</strong> <span>${sale.customerName}</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                            <strong>Date:</strong> <span>${new Date(sale.timestamp).toLocaleDateString('en-IN')}</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                            <strong>Time:</strong> <span>${new Date(sale.timestamp).toLocaleTimeString('en-IN', {hour: '2-digit', minute: '2-digit'})}</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <strong>Payment:</strong> <span>${sale.paymentMode}</span>
+                        </div>
+                    </div>
+                    
+                    <div style="border-bottom: 1px dashed #000; margin: 10px 0;"></div>
+                    
+                    <!-- Items Header -->
+                    <div style="font-size: 11px; font-weight: bold; margin-bottom: 8px; border-bottom: 1px solid #000; padding-bottom: 5px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="width: 45%;">ITEM</span>
+                            <span style="width: 15%; text-align: center;">QTY</span>
+                            <span style="width: 20%; text-align: right;">RATE</span>
+                            <span style="width: 20%; text-align: right;">AMOUNT</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Items List -->
+                    <div style="margin-bottom: 15px;">`;
+
+            sale.items.forEach(item => {
+                receiptHTML += `
+                    <div style="font-size: 11px; margin-bottom: 5px; padding: 3px 0;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="width: 45%; font-weight: 500;">${item.name}</span>
+                            <span style="width: 15%; text-align: center;">${item.quantity}</span>
+                            <span style="width: 20%; text-align: right;">₹${item.rate.toFixed(2)}</span>
+                            <span style="width: 20%; text-align: right; font-weight: bold;">₹${item.amount.toFixed(2)}</span>
+                        </div>
+                    </div>`;
+            });
+
+            receiptHTML += `
+                    </div>
+                    
+                    <div style="border-top: 2px solid #000; margin: 15px 0; padding-top: 10px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 14px; font-weight: bold;">
+                            <span>TOTAL AMOUNT:</span>
+                            <span>₹${sale.total.toFixed(2)}</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Footer -->
+                    <div style="text-align: center; font-size: 11px; margin-top: 20px; border-top: 1px dashed #000; padding-top: 15px;">
+                        <div style="margin-bottom: 5px; font-weight: bold;">Thank you for visiting Hope Cafe!</div>
+                        <div style="margin-bottom: 5px;">We appreciate your business</div>
+                        <div style="margin-bottom: 10px;">Please visit us again soon</div>
+                        <div style="font-size: 9px; color: #666;">Powered by Hope Cafe POS System</div>
+                        <div style="font-size: 9px; color: #666; margin-top: 5px;">REPRINT - ${new Date().toLocaleString('en-IN')}</div>
+                    </div>
+                </div>
+            `;
+
+            // Set the print area content and print
+            document.getElementById('printArea').innerHTML = receiptHTML;
+            document.getElementById('printArea').style.display = 'block';
+            
+            window.print();
+            
+            setTimeout(() => {
+                document.getElementById('printArea').style.display = 'none';
+            }, 1000);
+        }
+
         function clearOrder() {
             orderItems = [];
             document.getElementById('customerName').value = '';
@@ -1087,5 +1200,5 @@
             updateOrderSummary();
         }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'966d9c8700049638',t:'MTc1MzgwMjU0My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'966dd1e1a6304981',t:'MTc1MzgwNDcyOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
