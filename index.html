@@ -274,91 +274,119 @@
 
         // Initialize the app
         document.addEventListener('DOMContentLoaded', function() {
-            generateOrderNumber();
-            updateDateTime();
-            setInterval(updateDateTime, 1000);
-            
-            // Load data from localStorage
-            loadDataFromStorage();
-            
-            // Load sample menu items if none exist
-            if (menuItems.length === 0) {
+            try {
+                generateOrderNumber();
+                updateDateTime();
+                setInterval(updateDateTime, 1000);
+                
+                // Load data from localStorage
+                loadDataFromStorage();
+                
+                // Load sample menu items if none exist
+                if (menuItems.length === 0) {
+                    loadSampleMenu();
+                }
+                
+                // Setup PWA for GitHub Pages
+                setupGitHubPagesPWA();
+                
+                // Register service worker for offline support
+                registerServiceWorker();
+                
+                // Setup PWA install prompt
+                setupPWAInstall();
+                
+                // Setup tab switching
+                setupTabSwitching();
+                
+                // Setup product select
+                setupProductSelect();
+                
+                // Setup date filter
+                setupDateFilter();
+                
+                console.log('Hope Cafe POS initialized successfully');
+            } catch (error) {
+                console.error('Initialization error:', error);
+                // Fallback initialization
+                generateOrderNumber();
+                updateDateTime();
                 loadSampleMenu();
             }
-            
-            // Setup PWA for GitHub Pages
-            setupGitHubPagesPWA();
-            
-            // Register service worker for offline support
-            registerServiceWorker();
-            
-            // Setup PWA install prompt
-            setupPWAInstall();
         });
 
 
 
         // Setup PWA for GitHub Pages
         function setupGitHubPagesPWA() {
-            // Get the current URL to determine the correct paths
-            const currentUrl = window.location.href;
-            const baseUrl = currentUrl.substring(0, currentUrl.lastIndexOf('/') + 1);
-            
-            // Create manifest dynamically
-            const manifest = {
-                name: "Hope Cafe POS System",
-                short_name: "Hope Cafe POS",
-                description: "Complete Point of Sale system for Hope Cafe",
-                start_url: "./",
-                display: "standalone",
-                background_color: "#fffbf0",
-                theme_color: "#d92620",
-                orientation: "portrait-primary",
-                categories: ["business", "productivity"],
-                icons: [
-                    {
-                        src: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIj48cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgZmlsbD0iI2Q5MjYyMCIgcng9IjI0Ii8+PHRleHQgeD0iOTYiIHk9IjEyMCIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSI2MCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuKYlTwvdGV4dD48L3N2Zz4=",
-                        sizes: "192x192",
-                        type: "image/svg+xml",
-                        purpose: "any maskable"
-                    },
-                    {
-                        src: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgZmlsbD0iI2Q5MjYyMCIgcng9IjY0Ii8+PHRleHQgeD0iMjU2IiB5PSIzMjAiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTYwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+4piVPC90ZXh0Pjwvc3ZnPg==",
-                        sizes: "512x512",
-                        type: "image/svg+xml",
-                        purpose: "any maskable"
-                    }
-                ]
-            };
-            
-            // Create manifest blob and URL
-            const manifestBlob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
-            const manifestUrl = URL.createObjectURL(manifestBlob);
-            
-            // Update manifest link
-            document.getElementById('manifest-placeholder').href = manifestUrl;
+            try {
+                // Create manifest dynamically
+                const manifest = {
+                    name: "Hope Cafe POS System",
+                    short_name: "Hope Cafe POS",
+                    description: "Complete Point of Sale system for Hope Cafe",
+                    start_url: "./",
+                    display: "standalone",
+                    background_color: "#fffbf0",
+                    theme_color: "#d92620",
+                    orientation: "portrait-primary",
+                    categories: ["business", "productivity"],
+                    icons: [
+                        {
+                            src: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIj48cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgZmlsbD0iI2Q5MjYyMCIgcng9IjI0Ii8+PHRleHQgeD0iOTYiIHk9IjEyMCIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSI2MCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuKYlTwvdGV4dD48L3N2Zz4=",
+                            sizes: "192x192",
+                            type: "image/svg+xml",
+                            purpose: "any maskable"
+                        },
+                        {
+                            src: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgZmlsbD0iI2Q5MjYyMCIgcng9IjY0Ii8+PHRleHQgeD0iMjU2IiB5PSIzMjAiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTYwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+4piVPC90ZXh0Pjwvc3ZnPg==",
+                            sizes: "512x512",
+                            type: "image/svg+xml",
+                            purpose: "any maskable"
+                        }
+                    ]
+                };
+                
+                // Create manifest blob and URL
+                const manifestBlob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+                const manifestUrl = URL.createObjectURL(manifestBlob);
+                
+                // Update manifest link
+                const manifestLink = document.getElementById('manifest-placeholder');
+                if (manifestLink) {
+                    manifestLink.href = manifestUrl;
+                }
+                
+                console.log('PWA manifest setup complete');
+            } catch (error) {
+                console.error('PWA setup error:', error);
+            }
         }
 
         // PWA Install Setup
         function setupPWAInstall() {
-            let deferredPrompt;
-            
-            // Listen for beforeinstallprompt event
-            window.addEventListener('beforeinstallprompt', (e) => {
-                e.preventDefault();
-                deferredPrompt = e;
-                showInstallButton();
-            });
-            
-            // Check if already installed
-            window.addEventListener('appinstalled', () => {
-                hideInstallButton();
-                console.log('PWA was installed');
-            });
-            
-            // Check if running as PWA
-            if (window.matchMedia('(display-mode: standalone)').matches) {
-                console.log('Running as PWA');
+            try {
+                // Listen for beforeinstallprompt event
+                window.addEventListener('beforeinstallprompt', (e) => {
+                    e.preventDefault();
+                    deferredPrompt = e;
+                    showInstallButton();
+                });
+                
+                // Check if already installed
+                window.addEventListener('appinstalled', () => {
+                    hideInstallButton();
+                    console.log('PWA was installed');
+                });
+                
+                // Check if running as PWA
+                if (window.matchMedia('(display-mode: standalone)').matches) {
+                    console.log('Running as PWA');
+                }
+                
+                console.log('PWA install setup complete');
+            } catch (error) {
+                console.error('PWA install setup error:', error);
             }
         }
 
@@ -481,18 +509,26 @@
 
 
 
-        // Tab switching
-        document.getElementById('billingTab').addEventListener('click', function() {
-            showBillingSection();
-        });
+        // Tab switching - moved inside DOMContentLoaded
+        function setupTabSwitching() {
+            try {
+                document.getElementById('billingTab').addEventListener('click', function() {
+                    showBillingSection();
+                });
 
-        document.getElementById('salesTab').addEventListener('click', function() {
-            showSalesSection();
-        });
+                document.getElementById('salesTab').addEventListener('click', function() {
+                    showSalesSection();
+                });
 
-        document.getElementById('menuTab').addEventListener('click', function() {
-            showMenuSection();
-        });
+                document.getElementById('menuTab').addEventListener('click', function() {
+                    showMenuSection();
+                });
+                
+                console.log('Tab switching setup complete');
+            } catch (error) {
+                console.error('Tab switching setup error:', error);
+            }
+        }
 
         function showBillingSection() {
             document.getElementById('billingSection').classList.remove('hidden');
@@ -688,20 +724,28 @@
             document.getElementById('orderDateTime').value = dateTime;
         }
 
-        // Update rate when product is selected
-        document.getElementById('productSelect').addEventListener('change', function() {
-            const selectedIndex = this.value;
-            const rateSpan = document.getElementById('selectedRate');
-            
-            if (selectedIndex === '') {
-                rateSpan.textContent = '0.00';
-                selectedProductIndex = null;
-            } else {
-                selectedProductIndex = parseInt(selectedIndex);
-                const selectedItem = menuItems[selectedIndex];
-                rateSpan.textContent = selectedItem.price.toFixed(2);
+        // Update rate when product is selected - moved to setup function
+        function setupProductSelect() {
+            try {
+                document.getElementById('productSelect').addEventListener('change', function() {
+                    const selectedIndex = this.value;
+                    const rateSpan = document.getElementById('selectedRate');
+                    
+                    if (selectedIndex === '') {
+                        rateSpan.textContent = '0.00';
+                        selectedProductIndex = null;
+                    } else {
+                        selectedProductIndex = parseInt(selectedIndex);
+                        const selectedItem = menuItems[selectedIndex];
+                        rateSpan.textContent = selectedItem.price.toFixed(2);
+                    }
+                });
+                
+                console.log('Product select setup complete');
+            } catch (error) {
+                console.error('Product select setup error:', error);
             }
-        });
+        }
 
         function addToOrder() {
             const quantity = parseInt(document.getElementById('quantity').value);
@@ -953,10 +997,15 @@
             alert(info);
         }
 
-        // Add event listener for date filter
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('dateFilter').addEventListener('change', updateSalesDisplay);
-        });
+        // Setup date filter - moved to setup function
+        function setupDateFilter() {
+            try {
+                document.getElementById('dateFilter').addEventListener('change', updateSalesDisplay);
+                console.log('Date filter setup complete');
+            } catch (error) {
+                console.error('Date filter setup error:', error);
+            }
+        }
 
         function printReceipt() {
             const orderNumber = document.getElementById('orderNumber').value;
@@ -1124,5 +1173,5 @@
             updateOrderSummary();
         }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'966d86b541ba7edc',t:'MTc1MzgwMTY1MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'966d932492347e69',t:'MTc1MzgwMjE1OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
