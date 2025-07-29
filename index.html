@@ -1,1676 +1,1128 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Untitled</title><style>
-/* cspell:disable-file */
-/* webkit printing magic: print all background colors */
-html {
-	-webkit-print-color-adjust: exact;
-}
-* {
-	box-sizing: border-box;
-	-webkit-print-color-adjust: exact;
-}
-
-html,
-body {
-	margin: 0;
-	padding: 0;
-}
-@media only screen {
-	body {
-		margin: 2em auto;
-		max-width: 900px;
-		color: rgb(55, 53, 47);
-	}
-}
-
-body {
-	line-height: 1.5;
-	white-space: pre-wrap;
-}
-
-a,
-a.visited {
-	color: inherit;
-	text-decoration: underline;
-}
-
-.pdf-relative-link-path {
-	font-size: 80%;
-	color: #444;
-}
-
-h1,
-h2,
-h3 {
-	letter-spacing: -0.01em;
-	line-height: 1.2;
-	font-weight: 600;
-	margin-bottom: 0;
-}
-
-.page-title {
-	font-size: 2.5rem;
-	font-weight: 700;
-	margin-top: 0;
-	margin-bottom: 0.75em;
-}
-
-h1 {
-	font-size: 1.875rem;
-	margin-top: 1.875rem;
-}
-
-h2 {
-	font-size: 1.5rem;
-	margin-top: 1.5rem;
-}
-
-h3 {
-	font-size: 1.25rem;
-	margin-top: 1.25rem;
-}
-
-.source {
-	border: 1px solid #ddd;
-	border-radius: 3px;
-	padding: 1.5em;
-	word-break: break-all;
-}
-
-.callout {
-	border-radius: 3px;
-	padding: 1rem;
-}
-
-figure {
-	margin: 1.25em 0;
-	page-break-inside: avoid;
-}
-
-figcaption {
-	opacity: 0.5;
-	font-size: 85%;
-	margin-top: 0.5em;
-}
-
-mark {
-	background-color: transparent;
-}
-
-.indented {
-	padding-left: 1.5em;
-}
-
-hr {
-	background: transparent;
-	display: block;
-	width: 100%;
-	height: 1px;
-	visibility: visible;
-	border: none;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
-}
-
-img {
-	max-width: 100%;
-}
-
-@media only print {
-	img {
-		max-height: 100vh;
-		object-fit: contain;
-	}
-}
-
-@page {
-	margin: 1in;
-}
-
-.collection-content {
-	font-size: 0.875rem;
-}
-
-.column-list {
-	display: flex;
-	justify-content: space-between;
-}
-
-.column {
-	padding: 0 1em;
-}
-
-.column:first-child {
-	padding-left: 0;
-}
-
-.column:last-child {
-	padding-right: 0;
-}
-
-.table_of_contents-item {
-	display: block;
-	font-size: 0.875rem;
-	line-height: 1.3;
-	padding: 0.125rem;
-}
-
-.table_of_contents-indent-1 {
-	margin-left: 1.5rem;
-}
-
-.table_of_contents-indent-2 {
-	margin-left: 3rem;
-}
-
-.table_of_contents-indent-3 {
-	margin-left: 4.5rem;
-}
-
-.table_of_contents-link {
-	text-decoration: none;
-	opacity: 0.7;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
-}
-
-table,
-th,
-td {
-	border: 1px solid rgba(55, 53, 47, 0.09);
-	border-collapse: collapse;
-}
-
-table {
-	border-left: none;
-	border-right: none;
-}
-
-th,
-td {
-	font-weight: normal;
-	padding: 0.25em 0.5em;
-	line-height: 1.5;
-	min-height: 1.5em;
-	text-align: left;
-}
-
-th {
-	color: rgba(55, 53, 47, 0.6);
-}
-
-ol,
-ul {
-	margin: 0;
-	margin-block-start: 0.6em;
-	margin-block-end: 0.6em;
-}
-
-li > ol:first-child,
-li > ul:first-child {
-	margin-block-start: 0.6em;
-}
-
-ul > li {
-	list-style: disc;
-}
-
-ul.to-do-list {
-	padding-inline-start: 0;
-}
-
-ul.to-do-list > li {
-	list-style: none;
-}
-
-.to-do-children-checked {
-	text-decoration: line-through;
-	opacity: 0.375;
-}
-
-ul.toggle > li {
-	list-style: none;
-}
-
-ul {
-	padding-inline-start: 1.7em;
-}
-
-ul > li {
-	padding-left: 0.1em;
-}
-
-ol {
-	padding-inline-start: 1.6em;
-}
-
-ol > li {
-	padding-left: 0.2em;
-}
-
-.mono ol {
-	padding-inline-start: 2em;
-}
-
-.mono ol > li {
-	text-indent: -0.4em;
-}
-
-.toggle {
-	padding-inline-start: 0em;
-	list-style-type: none;
-}
-
-/* Indent toggle children */
-.toggle > li > details {
-	padding-left: 1.7em;
-}
-
-.toggle > li > details > summary {
-	margin-left: -1.1em;
-}
-
-.selected-value {
-	display: inline-block;
-	padding: 0 0.5em;
-	background: rgba(206, 205, 202, 0.5);
-	border-radius: 3px;
-	margin-right: 0.5em;
-	margin-top: 0.3em;
-	margin-bottom: 0.3em;
-	white-space: nowrap;
-}
-
-.collection-title {
-	display: inline-block;
-	margin-right: 1em;
-}
-
-.page-description {
-	margin-bottom: 2em;
-}
-
-.simple-table {
-	margin-top: 1em;
-	font-size: 0.875rem;
-	empty-cells: show;
-}
-.simple-table td {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table th {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table-header-color {
-	background: rgb(247, 246, 243);
-	color: black;
-}
-.simple-table-header {
-	font-weight: 500;
-}
-
-time {
-	opacity: 0.5;
-}
-
-.icon {
-	display: inline-block;
-	max-width: 1.2em;
-	max-height: 1.2em;
-	text-decoration: none;
-	vertical-align: text-bottom;
-	margin-right: 0.5em;
-}
-
-img.icon {
-	border-radius: 3px;
-}
-
-.user-icon {
-	width: 1.5em;
-	height: 1.5em;
-	border-radius: 100%;
-	margin-right: 0.5rem;
-}
-
-.user-icon-inner {
-	font-size: 0.8em;
-}
-
-.text-icon {
-	border: 1px solid #000;
-	text-align: center;
-}
-
-.page-cover-image {
-	display: block;
-	object-fit: cover;
-	width: 100%;
-	max-height: 30vh;
-}
-
-.page-header-icon {
-	font-size: 3rem;
-	margin-bottom: 1rem;
-}
-
-.page-header-icon-with-cover {
-	margin-top: -0.72em;
-	margin-left: 0.07em;
-}
-
-.page-header-icon img {
-	border-radius: 3px;
-}
-
-.link-to-page {
-	margin: 1em 0;
-	padding: 0;
-	border: none;
-	font-weight: 500;
-}
-
-p > .user {
-	opacity: 0.5;
-}
-
-td > .user,
-td > time {
-	white-space: nowrap;
-}
-
-input[type="checkbox"] {
-	transform: scale(1.5);
-	margin-right: 0.6em;
-	vertical-align: middle;
-}
-
-p {
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-}
-
-.image {
-	border: none;
-	margin: 1.5em 0;
-	padding: 0;
-	border-radius: 0;
-	text-align: center;
-}
-
-.code,
-code {
-	background: rgba(135, 131, 120, 0.15);
-	border-radius: 3px;
-	padding: 0.2em 0.4em;
-	border-radius: 3px;
-	font-size: 85%;
-	tab-size: 2;
-}
-
-code {
-	color: #eb5757;
-}
-
-.code {
-	padding: 1.5em 1em;
-}
-
-.code-wrap {
-	white-space: pre-wrap;
-	word-break: break-all;
-}
-
-.code > code {
-	background: none;
-	padding: 0;
-	font-size: 100%;
-	color: inherit;
-}
-
-blockquote {
-	font-size: 1.25em;
-	margin: 1em 0;
-	padding-left: 1em;
-	border-left: 3px solid rgb(55, 53, 47);
-}
-
-.bookmark {
-	text-decoration: none;
-	max-height: 8em;
-	padding: 0;
-	display: flex;
-	width: 100%;
-	align-items: stretch;
-}
-
-.bookmark-title {
-	font-size: 0.85em;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	height: 1.75em;
-	white-space: nowrap;
-}
-
-.bookmark-text {
-	display: flex;
-	flex-direction: column;
-}
-
-.bookmark-info {
-	flex: 4 1 180px;
-	padding: 12px 14px 14px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.bookmark-image {
-	width: 33%;
-	flex: 1 1 180px;
-	display: block;
-	position: relative;
-	object-fit: cover;
-	border-radius: 1px;
-}
-
-.bookmark-description {
-	color: rgba(55, 53, 47, 0.6);
-	font-size: 0.75em;
-	overflow: hidden;
-	max-height: 4.5em;
-	word-break: break-word;
-}
-
-.bookmark-href {
-	font-size: 0.75em;
-	margin-top: 0.25em;
-}
-
-.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
-.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
-.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
-.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
-.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
-.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
-.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
-.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
-.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
-.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
-.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
-.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
-.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.highlight-default {
-	color: rgba(50, 48, 44, 1);
-}
-.highlight-gray {
-	color: rgba(115, 114, 110, 1);
-	fill: rgba(115, 114, 110, 1);
-}
-.highlight-brown {
-	color: rgba(159, 107, 83, 1);
-	fill: rgba(159, 107, 83, 1);
-}
-.highlight-orange {
-	color: rgba(217, 115, 13, 1);
-	fill: rgba(217, 115, 13, 1);
-}
-.highlight-yellow {
-	color: rgba(203, 145, 47, 1);
-	fill: rgba(203, 145, 47, 1);
-}
-.highlight-teal {
-	color: rgba(68, 131, 97, 1);
-	fill: rgba(68, 131, 97, 1);
-}
-.highlight-blue {
-	color: rgba(51, 126, 169, 1);
-	fill: rgba(51, 126, 169, 1);
-}
-.highlight-purple {
-	color: rgba(144, 101, 176, 1);
-	fill: rgba(144, 101, 176, 1);
-}
-.highlight-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.highlight-red {
-	color: rgba(205, 60, 58, 1);
-	fill: rgba(205, 60, 58, 1);
-}
-.highlight-default_background {
-	color: rgba(50, 48, 44, 1);
-}
-.highlight-gray_background {
-	background: rgba(248, 248, 247, 1);
-}
-.highlight-brown_background {
-	background: rgba(244, 238, 238, 1);
-}
-.highlight-orange_background {
-	background: rgba(251, 236, 221, 1);
-}
-.highlight-yellow_background {
-	background: rgba(251, 243, 219, 1);
-}
-.highlight-teal_background {
-	background: rgba(237, 243, 236, 1);
-}
-.highlight-blue_background {
-	background: rgba(231, 243, 248, 1);
-}
-.highlight-purple_background {
-	background: rgba(248, 243, 252, 1);
-}
-.highlight-pink_background {
-	background: rgba(252, 241, 246, 1);
-}
-.highlight-red_background {
-	background: rgba(253, 235, 236, 1);
-}
-.block-color-default {
-	color: inherit;
-	fill: inherit;
-}
-.block-color-gray {
-	color: rgba(115, 114, 110, 1);
-	fill: rgba(115, 114, 110, 1);
-}
-.block-color-brown {
-	color: rgba(159, 107, 83, 1);
-	fill: rgba(159, 107, 83, 1);
-}
-.block-color-orange {
-	color: rgba(217, 115, 13, 1);
-	fill: rgba(217, 115, 13, 1);
-}
-.block-color-yellow {
-	color: rgba(203, 145, 47, 1);
-	fill: rgba(203, 145, 47, 1);
-}
-.block-color-teal {
-	color: rgba(68, 131, 97, 1);
-	fill: rgba(68, 131, 97, 1);
-}
-.block-color-blue {
-	color: rgba(51, 126, 169, 1);
-	fill: rgba(51, 126, 169, 1);
-}
-.block-color-purple {
-	color: rgba(144, 101, 176, 1);
-	fill: rgba(144, 101, 176, 1);
-}
-.block-color-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.block-color-red {
-	color: rgba(205, 60, 58, 1);
-	fill: rgba(205, 60, 58, 1);
-}
-.block-color-default_background {
-	color: inherit;
-	fill: inherit;
-}
-.block-color-gray_background {
-	background: rgba(248, 248, 247, 1);
-}
-.block-color-brown_background {
-	background: rgba(244, 238, 238, 1);
-}
-.block-color-orange_background {
-	background: rgba(251, 236, 221, 1);
-}
-.block-color-yellow_background {
-	background: rgba(251, 243, 219, 1);
-}
-.block-color-teal_background {
-	background: rgba(237, 243, 236, 1);
-}
-.block-color-blue_background {
-	background: rgba(231, 243, 248, 1);
-}
-.block-color-purple_background {
-	background: rgba(248, 243, 252, 1);
-}
-.block-color-pink_background {
-	background: rgba(252, 241, 246, 1);
-}
-.block-color-red_background {
-	background: rgba(253, 235, 236, 1);
-}
-.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
-.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
-.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
-.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
-.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
-.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
-.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
-.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
-.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
-.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
-
-.checkbox {
-	display: inline-flex;
-	vertical-align: text-bottom;
-	width: 16;
-	height: 16;
-	background-size: 16px;
-	margin-left: 2px;
-	margin-right: 5px;
-}
-
-.checkbox-on {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-
-.checkbox-off {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-	
-</style></head><body><article id="23f29cbe-78b1-80d3-a66d-f2c828db9486" class="page sans"><header><h1 class="page-title"></h1><p class="page-description"></p></header><div class="page-body"><p id="23f29cbe-78b1-80fc-8eb6-d22ed64a56d9" class="">&lt;!DOCTYPE html&gt;<br/>&lt;html lang=&quot;en&quot;&gt;<br/>&lt;head&gt;<br/>&lt;meta charset=&quot;UTF-8&quot;&gt;<br/>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, user-scalable=no&quot;&gt;<br/>&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;<br/>&lt;meta name=&quot;apple-mobile-web-app-status-bar-style&quot; content=&quot;default&quot;&gt;<br/>&lt;meta name=&quot;apple-mobile-web-app-title&quot; content=&quot;Cafe POS&quot;&gt;<br/>&lt;meta name=&quot;mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;<br/>&lt;title&gt;Cafe POS System&lt;/title&gt;<br/></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="23f29cbe-78b1-8012-80c4-cd2cfc81b14c" class="code"><code class="language-HTML" style="white-space:pre-wrap;word-break:break-all">&lt;!-- PWA Manifest for Offline Support --&gt;
-&lt;link rel=&quot;manifest&quot; href=&quot;data:application/json;base64,ewogICJuYW1lIjogIkhvcGUgQ2FmZSBQT1MgU3lzdGVtIiwKICAic2hvcnRfbmFtZSI6ICJIb3BlIENhZmUgUE9TIiwKICAic3RhcnRfdXJsIjogIi4iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiNmZmZiZjAiLAogICJ0aGVtZV9jb2xvciI6ICIjZDkyNjIwIiwKICAib3JpZW50YXRpb24iOiAicG9ydHJhaXQiLAogICJjYXRlZ29yaWVzIjogWyJidXNpbmVzcyIsICJwcm9kdWN0aXZpdHkiXSwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWNpSUhkcFpIUm9QU0l4TWpBaUlHaGxhV2RvZEQwaU1USXdJajQ4Y21WamRDQjNhV1IwYUQwaU1USXdJaUJvWldsbmFIUTlJakV5TUNJaVptbHNiRDBpSTJRNU1qWXlNQ0l2UGp4MFpYaDBJSGc5SWpZd0lpQjVQU0kzTUNJaVptbHNiRDBpSTJabVptWm1abWtpUUdadmJuUXRjMmw2WlQwaU5EQWlJSFJsZUhRdFlXNWphRzl5UFNKdGFXUmtiR1VpUGlCSWIzQmxJRU5oWm1VZ1BDOTBaWGgwUGp3dmMzWm5QZz09IiwKICAgICAgInNpemVzIjogIjEyMHgxMjAiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfSwKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lJSGRwWkhSb1BTSXlOVFlpSUdobGFXZG9kRDBpTWpVMklqNDhjbVZqZENCM2FXUjBhRDBpTWpVMklpQm9aV2xuYUhROUlqSTFOaUlpWm1sc2JEMGlJMlE1TWpZeU1DSXZQangwWlhoMElIZzlJakV5T0NJZ2VUMGlNVFl3SWlCbWFXeHNQU0lqWm1abVptWm1JaUJtYjI1MExYTnBlbVU5SWpNd0lpQjBaWGgwTFdGdVkyaHZjajBpYldsa1pHeGxJajVJYjNCbElFTmhabVVnUEM5MFpYaDBQand2YzNabkBnPT0iLAogICAgICAic2l6ZXMiOiAiMjU2eDI1NiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiCiAgICB9CiAgXQp9&quot;&gt;
-
-&lt;!-- Apple Touch Icons --&gt;
-&lt;link rel=&quot;apple-touch-icon&quot; href=&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iI2Q5MjYyMCIvPjx0ZXh0IHg9IjYwIiB5PSI3MCIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSI0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+IENhZmUgPC90ZXh0Pjwvc3ZnPg==&quot;&gt;
-&lt;script src=&quot;&lt;https://cdn.tailwindcss.com&gt;&quot;&gt;&lt;/script&gt;
-&lt;style&gt;
-    @import url(&#x27;&lt;https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap&gt;&#x27;);
-    body {
-        font-family: &#x27;Inter&#x27;, sans-serif;
-        -webkit-user-select: none;
-        -webkit-touch-callout: none;
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    /* iPad optimizations */
-    input, select, button {
-        -webkit-appearance: none;
-        border-radius: 8px;
-        font-size: 16px; /* Prevents zoom on iOS */
-    }
-
-    /* Touch-friendly sizing */
-    button {
-        min-height: 44px;
-        min-width: 44px;
-    }
-
-    /* Print styles */
-    @media print {
-        body * { visibility: hidden; }
-        #printArea, #printArea * { visibility: visible; }
-        #printArea {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            background: white;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Cafe POS">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Cafe POS System</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" id="manifest-placeholder">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjZDkyNjIwIi8+PHRleHQgeD0iMTYiIHk9IjIyIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7imJU8L3RleHQ+PC9zdmc+">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iI2Q5MjYyMCIvPjx0ZXh0IHg9IjYwIiB5PSI3MCIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSI0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+IENhZmUgPC90ZXh0Pjwvc3ZnPg==">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { 
+            font-family: 'Inter', sans-serif; 
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
         }
-        .no-print { display: none !important; }
-    }
-
-    /* PWA styles */
-    .install-prompt {
-        position: fixed;
-        bottom: 20px;
-        left: 20px;
-        right: 20px;
-        background: #1f2937;
-        color: white;
-        padding: 16px;
-        border-radius: 12px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        z-index: 1000;
-        display: none;
-    }
-
-    /* Easy Install Button */
-    .easy-install-btn {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: linear-gradient(135deg, #10b981, #059669);
-        color: white;
-        padding: 12px 20px;
-        border-radius: 25px;
-        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
-        z-index: 1000;
-        font-weight: 600;
-        font-size: 14px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        border: none;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .easy-install-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
-    }
-
-    .easy-install-btn:active {
-        transform: translateY(0);
-    }
-
-
-&lt;/style&gt;
-</code></pre><p id="23f29cbe-78b1-8042-be78-d3e005341870" class="">&lt;/head&gt;<br/>&lt;body class=&quot;bg-gradient-to-br from-amber-50 to-orange-100 min-h-screen&quot;&gt;<br/></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="23f29cbe-78b1-8045-bc7d-e763c0b5fb9e" class="code"><code class="language-HTML" style="white-space:pre-wrap;word-break:break-all">&lt;!-- Install Prompt --&gt;
-&lt;div id=&quot;installPrompt&quot; class=&quot;install-prompt&quot;&gt;
-    &lt;div class=&quot;flex justify-between items-center mb-2&quot;&gt;
-        &lt;span class=&quot;font-medium&quot;&gt;Install Cafe POS&lt;/span&gt;
-        &lt;button onclick=&quot;hideInstallPrompt()&quot; class=&quot;text-gray-300 hover:text-white&quot;&gt;×&lt;/button&gt;
-    &lt;/div&gt;
-    &lt;p class=&quot;text-sm mb-3&quot;&gt;Add this app to your home screen for easy access!&lt;/p&gt;
-    &lt;div class=&quot;flex space-x-2&quot;&gt;
-        &lt;button onclick=&quot;installApp()&quot; class=&quot;bg-amber-600 text-white px-4 py-2 rounded-lg text-sm font-medium&quot;&gt;Install&lt;/button&gt;
-        &lt;button onclick=&quot;hideInstallPrompt()&quot; class=&quot;bg-gray-600 text-white px-4 py-2 rounded-lg text-sm font-medium&quot;&gt;Later&lt;/button&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;!-- Print Area (Hidden) --&gt;
-&lt;div id=&quot;printArea&quot; style=&quot;display: none;&quot;&gt;&lt;/div&gt;
-
-&lt;div class=&quot;container mx-auto px-4 py-6&quot;&gt;
-    &lt;!-- Header --&gt;
-    &lt;div class=&quot;bg-white rounded-xl shadow-lg p-6 mb-6&quot;&gt;
-        &lt;h1 class=&quot;text-3xl font-bold text-amber-800 text-center&quot;&gt;☕ Hope Cafe POS&lt;/h1&gt;
-        &lt;div class=&quot;flex justify-center mt-4 space-x-4&quot;&gt;
-            &lt;button id=&quot;billingTab&quot; class=&quot;px-6 py-2 bg-amber-600 text-white rounded-lg font-medium hover:bg-amber-700 transition-colors&quot;&gt;Billing&lt;/button&gt;
-            &lt;button id=&quot;salesTab&quot; class=&quot;px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300 transition-colors&quot;&gt;Sales History&lt;/button&gt;
-            &lt;button id=&quot;menuTab&quot; class=&quot;px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300 transition-colors&quot;&gt;Menu Management&lt;/button&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-
-    &lt;!-- Sales History Section --&gt;
-    &lt;div id=&quot;salesSection&quot; class=&quot;space-y-6 hidden&quot;&gt;
-        &lt;div class=&quot;bg-white rounded-xl shadow-lg p-6&quot;&gt;
-            &lt;h2 class=&quot;text-2xl font-semibold text-gray-800 mb-4&quot;&gt;📊 Sales History&lt;/h2&gt;
-
-            &lt;!-- Daily Summary --&gt;
-            &lt;div class=&quot;grid md:grid-cols-3 gap-4 mb-6&quot;&gt;
-                &lt;div class=&quot;bg-green-50 p-4 rounded-lg&quot;&gt;
-                    &lt;h3 class=&quot;text-lg font-medium text-green-800&quot;&gt;Today&#x27;s Sales&lt;/h3&gt;
-                    &lt;p class=&quot;text-2xl font-bold text-green-600&quot;&gt;₹&lt;span id=&quot;todaysSales&quot;&gt;0.00&lt;/span&gt;&lt;/p&gt;
-                    &lt;p class=&quot;text-sm text-green-600&quot;&gt;&lt;span id=&quot;todaysOrders&quot;&gt;0&lt;/span&gt; orders&lt;/p&gt;
-                &lt;/div&gt;
-                &lt;div class=&quot;bg-blue-50 p-4 rounded-lg&quot;&gt;
-                    &lt;h3 class=&quot;text-lg font-medium text-blue-800&quot;&gt;Total Orders&lt;/h3&gt;
-                    &lt;p class=&quot;text-2xl font-bold text-blue-600&quot;&gt;&lt;span id=&quot;totalOrders&quot;&gt;0&lt;/span&gt;&lt;/p&gt;
-                    &lt;p class=&quot;text-sm text-blue-600&quot;&gt;All time&lt;/p&gt;
-                &lt;/div&gt;
-                &lt;div class=&quot;bg-amber-50 p-4 rounded-lg&quot;&gt;
-                    &lt;h3 class=&quot;text-lg font-medium text-amber-800&quot;&gt;Average Order&lt;/h3&gt;
-                    &lt;p class=&quot;text-2xl font-bold text-amber-600&quot;&gt;₹&lt;span id=&quot;averageOrder&quot;&gt;0.00&lt;/span&gt;&lt;/p&gt;
-                    &lt;p class=&quot;text-sm text-amber-600&quot;&gt;Per order&lt;/p&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-
-            &lt;!-- Filter Options --&gt;
-            &lt;div class=&quot;mb-4&quot;&gt;
-                &lt;div class=&quot;flex space-x-4&quot;&gt;
-                    &lt;select id=&quot;dateFilter&quot; class=&quot;px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent&quot;&gt;
-                        &lt;option value=&quot;today&quot;&gt;Today&lt;/option&gt;
-                        &lt;option value=&quot;week&quot;&gt;This Week&lt;/option&gt;
-                        &lt;option value=&quot;month&quot;&gt;This Month&lt;/option&gt;
-                        &lt;option value=&quot;all&quot;&gt;All Time&lt;/option&gt;
-                    &lt;/select&gt;
-                    &lt;button onclick=&quot;exportSalesData()&quot; class=&quot;bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium&quot;&gt;Export Data&lt;/button&gt;
-                    &lt;button onclick=&quot;showDataLocationInfo()&quot; class=&quot;bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors font-medium&quot;&gt;Data Info&lt;/button&gt;
-                    &lt;button onclick=&quot;clearAllSales()&quot; class=&quot;bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors font-medium&quot;&gt;Clear All Data&lt;/button&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-
-            &lt;!-- Sales Table --&gt;
-            &lt;div class=&quot;overflow-x-auto&quot;&gt;
-                &lt;table class=&quot;w-full border-collapse border border-gray-300 rounded-lg&quot;&gt;
-                    &lt;thead class=&quot;bg-amber-100&quot;&gt;
-                        &lt;tr&gt;
-                            &lt;th class=&quot;border border-gray-300 px-4 py-2 text-left&quot;&gt;Order #&lt;/th&gt;
-                            &lt;th class=&quot;border border-gray-300 px-4 py-2 text-left&quot;&gt;Customer&lt;/th&gt;
-                            &lt;th class=&quot;border border-gray-300 px-4 py-2 text-left&quot;&gt;Date &amp; Time&lt;/th&gt;
-                            &lt;th class=&quot;border border-gray-300 px-4 py-2 text-center&quot;&gt;Items&lt;/th&gt;
-                            &lt;th class=&quot;border border-gray-300 px-4 py-2 text-right&quot;&gt;Total&lt;/th&gt;
-                            &lt;th class=&quot;border border-gray-300 px-4 py-2 text-center&quot;&gt;Payment&lt;/th&gt;
-                        &lt;/tr&gt;
-                    &lt;/thead&gt;
-                    &lt;tbody id=&quot;salesHistoryTable&quot;&gt;
-                        &lt;tr&gt;
-                            &lt;td colspan=&quot;6&quot; class=&quot;border border-gray-300 px-4 py-8 text-center text-gray-500&quot;&gt;No sales data available&lt;/td&gt;
-                        &lt;/tr&gt;
-                    &lt;/tbody&gt;
-                &lt;/table&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-
-    &lt;!-- Menu Management Section --&gt;
-    &lt;div id=&quot;menuSection&quot; class=&quot;space-y-6 hidden&quot;&gt;
-        &lt;div class=&quot;bg-white rounded-xl shadow-lg p-6&quot;&gt;
-            &lt;h2 class=&quot;text-2xl font-semibold text-gray-800 mb-4&quot;&gt;📋 Menu Management&lt;/h2&gt;
-
-            &lt;!-- Add Item Form --&gt;
-            &lt;div class=&quot;grid md:grid-cols-2 gap-6 mb-6&quot;&gt;
-                &lt;div&gt;
-                    &lt;h3 class=&quot;text-lg font-medium text-gray-700 mb-3&quot;&gt;Add New Item&lt;/h3&gt;
-                    &lt;div class=&quot;space-y-3&quot;&gt;
-                        &lt;input type=&quot;text&quot; id=&quot;itemName&quot; placeholder=&quot;Item Name&quot; class=&quot;w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent&quot;&gt;
-                        &lt;select id=&quot;itemCategory&quot; class=&quot;w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent&quot;&gt;
-                            &lt;option value=&quot;&quot;&gt;Select Category&lt;/option&gt;
-                            &lt;option value=&quot;Beverages&quot;&gt;Beverages&lt;/option&gt;
-                            &lt;option value=&quot;Food&quot;&gt;Food&lt;/option&gt;
-                        &lt;/select&gt;
-                        &lt;input type=&quot;number&quot; id=&quot;itemPrice&quot; placeholder=&quot;Price&quot; step=&quot;0.01&quot; class=&quot;w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent&quot;&gt;
-                        &lt;button onclick=&quot;addMenuItem()&quot; class=&quot;w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors font-medium&quot;&gt;Add Item&lt;/button&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
-
-                &lt;!-- Current Menu Display --&gt;
-                &lt;div&gt;
-                    &lt;h3 class=&quot;text-lg font-medium text-gray-700 mb-3&quot;&gt;Current Menu&lt;/h3&gt;
-                    &lt;div id=&quot;menuDisplay&quot; class=&quot;bg-gray-50 rounded-lg p-4 max-h-64 overflow-y-auto&quot;&gt;
-                        &lt;p class=&quot;text-gray-500 text-center&quot;&gt;No items added yet&lt;/p&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-
-    &lt;!-- Billing Section --&gt;
-    &lt;div id=&quot;billingSection&quot; class=&quot;space-y-6&quot;&gt;
-        &lt;div class=&quot;bg-white rounded-xl shadow-lg p-6&quot;&gt;
-            &lt;h2 class=&quot;text-2xl font-semibold text-gray-800 mb-4&quot;&gt;🧾 New Order&lt;/h2&gt;
-
-            &lt;!-- Order Header --&gt;
-            &lt;div class=&quot;grid md:grid-cols-3 gap-4 mb-6 p-4 bg-amber-50 rounded-lg&quot;&gt;
-                &lt;div&gt;
-                    &lt;label class=&quot;block text-sm font-medium text-gray-700 mb-1&quot;&gt;Order Number&lt;/label&gt;
-                    &lt;input type=&quot;text&quot; id=&quot;orderNumber&quot; class=&quot;w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent&quot; readonly&gt;
-                &lt;/div&gt;
-                &lt;div&gt;
-                    &lt;label class=&quot;block text-sm font-medium text-gray-700 mb-1&quot;&gt;Customer Name&lt;/label&gt;
-                    &lt;input type=&quot;text&quot; id=&quot;customerName&quot; placeholder=&quot;Enter customer name&quot; class=&quot;w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent&quot;&gt;
-                &lt;/div&gt;
-                &lt;div&gt;
-                    &lt;label class=&quot;block text-sm font-medium text-gray-700 mb-1&quot;&gt;Date &amp; Time&lt;/label&gt;
-                    &lt;input type=&quot;text&quot; id=&quot;orderDateTime&quot; class=&quot;w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-100&quot; readonly&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-
-            &lt;!-- Add Items Section --&gt;
-            &lt;div class=&quot;mb-6&quot;&gt;
-                &lt;h3 class=&quot;text-lg font-medium text-gray-700 mb-3&quot;&gt;Add Items to Order&lt;/h3&gt;
-                &lt;div class=&quot;grid md:grid-cols-4 gap-3 p-4 bg-gray-50 rounded-lg&quot;&gt;
-                    &lt;select id=&quot;productSelect&quot; class=&quot;px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent&quot;&gt;
-                        &lt;option value=&quot;&quot;&gt;Select Product&lt;/option&gt;
-                    &lt;/select&gt;
-                    &lt;input type=&quot;number&quot; id=&quot;quantity&quot; placeholder=&quot;Quantity&quot; min=&quot;1&quot; value=&quot;1&quot; class=&quot;px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent&quot;&gt;
-                    &lt;div class=&quot;px-3 py-2 bg-white border border-gray-300 rounded-lg&quot;&gt;
-                        &lt;span class=&quot;text-gray-600&quot;&gt;Rate: ₹&lt;/span&gt;&lt;span id=&quot;selectedRate&quot;&gt;0.00&lt;/span&gt;
-                    &lt;/div&gt;
-                    &lt;button onclick=&quot;addToOrder()&quot; class=&quot;bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium&quot;&gt;Add Item&lt;/button&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-
-            &lt;!-- Order Items Table --&gt;
-            &lt;div class=&quot;mb-6&quot;&gt;
-                &lt;h3 class=&quot;text-lg font-medium text-gray-700 mb-3&quot;&gt;Order Items&lt;/h3&gt;
-                &lt;div class=&quot;overflow-x-auto&quot;&gt;
-                    &lt;table class=&quot;w-full border-collapse border border-gray-300 rounded-lg&quot;&gt;
-                        &lt;thead class=&quot;bg-amber-100&quot;&gt;
-                            &lt;tr&gt;
-                                &lt;th class=&quot;border border-gray-300 px-4 py-2 text-left&quot;&gt;Product&lt;/th&gt;
-                                &lt;th class=&quot;border border-gray-300 px-4 py-2 text-center&quot;&gt;Quantity&lt;/th&gt;
-                                &lt;th class=&quot;border border-gray-300 px-4 py-2 text-right&quot;&gt;Rate&lt;/th&gt;
-                                &lt;th class=&quot;border border-gray-300 px-4 py-2 text-right&quot;&gt;Amount&lt;/th&gt;
-                                &lt;th class=&quot;border border-gray-300 px-4 py-2 text-center&quot;&gt;Action&lt;/th&gt;
-                            &lt;/tr&gt;
-                        &lt;/thead&gt;
-                        &lt;tbody id=&quot;orderItemsTable&quot;&gt;
-                            &lt;tr&gt;
-                                &lt;td colspan=&quot;5&quot; class=&quot;border border-gray-300 px-4 py-8 text-center text-gray-500&quot;&gt;No items added to order&lt;/td&gt;
-                            &lt;/tr&gt;
-                        &lt;/tbody&gt;
-                    &lt;/table&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-
-            &lt;!-- Order Summary --&gt;
-            &lt;div class=&quot;grid md:grid-cols-2 gap-6&quot;&gt;
-                &lt;div class=&quot;space-y-4&quot;&gt;
-                    &lt;div&gt;
-                        &lt;label class=&quot;block text-sm font-medium text-gray-700 mb-1&quot;&gt;Payment Mode&lt;/label&gt;
-                        &lt;select id=&quot;paymentMode&quot; class=&quot;w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent&quot;&gt;
-                            &lt;option value=&quot;Cash&quot;&gt;Cash&lt;/option&gt;
-                            &lt;option value=&quot;Online&quot;&gt;Online&lt;/option&gt;
-                        &lt;/select&gt;
-                    &lt;/div&gt;
-                    &lt;button onclick=&quot;completeOrder()&quot; class=&quot;w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors font-medium text-lg&quot;&gt;Complete &amp; Print Order&lt;/button&gt;
-                    &lt;button onclick=&quot;clearOrder()&quot; class=&quot;w-full bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600 transition-colors font-medium&quot;&gt;Clear Order&lt;/button&gt;
-                &lt;/div&gt;
-
-                &lt;div class=&quot;bg-amber-50 p-6 rounded-lg&quot;&gt;
-                    &lt;h3 class=&quot;text-xl font-semibold text-gray-800 mb-4&quot;&gt;Order Summary&lt;/h3&gt;
-                    &lt;div class=&quot;space-y-2&quot;&gt;
-                        &lt;div class=&quot;flex justify-between&quot;&gt;
-                            &lt;span&gt;Subtotal:&lt;/span&gt;
-                            &lt;span class=&quot;font-medium&quot;&gt;₹&lt;span id=&quot;subtotal&quot;&gt;0.00&lt;/span&gt;&lt;/span&gt;
-                        &lt;/div&gt;
-                        &lt;div class=&quot;flex justify-between text-xl font-bold text-amber-800 border-t pt-2&quot;&gt;
-                            &lt;span&gt;Total Amount:&lt;/span&gt;
-                            &lt;span&gt;₹&lt;span id=&quot;totalAmount&quot;&gt;0.00&lt;/span&gt;&lt;/span&gt;
-                        &lt;/div&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;script&gt;
-    // Global variables
-    let menuItems = [];
-    let orderItems = [];
-    let orderCounter = 1;
-    let deferredPrompt;
-    let salesHistory = [];
-    let selectedProductIndex = null;
-
-    // Initialize the app
-    document.addEventListener(&#x27;DOMContentLoaded&#x27;, function() {
-        generateOrderNumber();
-        updateDateTime();
-        setInterval(updateDateTime, 1000);
-
-        // Load data from localStorage
-        loadDataFromStorage();
-
-        // Load sample menu items if none exist
-        if (menuItems.length === 0) {
-            loadSampleMenu();
+        
+        /* iPad optimizations */
+        input, select, button {
+            -webkit-appearance: none;
+            border-radius: 8px;
+            font-size: 16px; /* Prevents zoom on iOS */
         }
-
-
-
-        // Register service worker for offline support
-        registerServiceWorker();
-
-        // PWA installation
-        setTimeout(showInstallPrompt, 3000);
-    });
-
-    // Easy Install Options
-    function showInstallOptions() {
-        const options = `
-</code></pre><p id="23f29cbe-78b1-806e-9c1a-d294de576884" class="">🚀 INSTALL HOPE CAFE POS ON YOUR IPAD:</p><p id="23f29cbe-78b1-80c0-b7ac-daf28def0394" class="">📱 METHOD 1: ADD TO HOME SCREEN (Recommended)</p><ol type="1" id="23f29cbe-78b1-8065-9666-fe19da8bf632" class="numbered-list" start="1"><li>Tap the Share button (⬆️) in Safari</li></ol><ol type="1" id="23f29cbe-78b1-805c-ac0a-c68d56febed9" class="numbered-list" start="2"><li>Scroll down and tap &quot;Add to Home Screen&quot;</li></ol><ol type="1" id="23f29cbe-78b1-80a3-841d-ebe3e1fe120b" class="numbered-list" start="3"><li>Tap &quot;Add&quot; to confirm</li></ol><ol type="1" id="23f29cbe-78b1-80af-8bc3-dbc0e18c560c" class="numbered-list" start="4"><li>Find the app icon on your home screen!</li></ol><p id="23f29cbe-78b1-80a1-9be4-ee7e98c67b97" class="">💾 METHOD 2: SAVE AS FILE</p><ol type="1" id="23f29cbe-78b1-80bb-a5b7-ff918d1f2de9" class="numbered-list" start="1"><li>Copy this entire webpage code</li></ol><ol type="1" id="23f29cbe-78b1-80c5-9aef-cd9fbb047de9" class="numbered-list" start="2"><li>Open Files app → Create new text file</li></ol><ol type="1" id="23f29cbe-78b1-8085-9bcd-fa7a77ef43e8" class="numbered-list" start="3"><li>Name it &quot;hope-cafe-pos.html&quot;</li></ol><ol type="1" id="23f29cbe-78b1-80b2-ac1f-df0ff78741a9" class="numbered-list" start="4"><li>Paste the code and save</li></ol><ol type="1" id="23f29cbe-78b1-803d-a08e-f964e7369f68" class="numbered-list" start="5"><li>Double-tap the file to open</li></ol><p id="23f29cbe-78b1-80cd-9b71-c3af343097ec" class="">☁️ METHOD 3: BOOKMARK FOR QUICK ACCESS</p><ol type="1" id="23f29cbe-78b1-80d7-8e34-de4ab8fc73ea" class="numbered-list" start="1"><li>Tap the Share button (⬆️)</li></ol><ol type="1" id="23f29cbe-78b1-80cb-b44e-c561b70a9542" class="numbered-list" start="2"><li>Tap &quot;Add Bookmark&quot;</li></ol><ol type="1" id="23f29cbe-78b1-8001-ae14-e880d6d071cc" class="numbered-list" start="3"><li>Save to Favorites for easy access</li></ol><p id="23f29cbe-78b1-8081-9a51-d9cda296005e" class="">✨ BENEFITS OF INSTALLING:<br/>• Works completely offline<br/>• Faster loading and performance<br/>• App-like experience on your iPad<br/>• All data stays private on your device<br/>• Perfect for daily cafe operations<br/></p><p id="23f29cbe-78b1-8093-b492-d71343560e5e" class="">Would you like me to guide you through any of these methods?<br/>`;<br/></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="23f29cbe-78b1-8039-8abc-fbcae9a2d3f6" class="code"><code class="language-HTML" style="white-space:pre-wrap;word-break:break-all">        alert(options);
-    }
-
-    // Service Worker Registration for Offline Support
-    function registerServiceWorker() {
-        if (&#x27;serviceWorker&#x27; in navigator) {
-            // Create service worker inline
-            const swCode = `
-                const CACHE_NAME = &#x27;hope-cafe-pos-v1&#x27;;
-                const urlsToCache = [
-                    &#x27;/&#x27;,
-                    &#x27;&lt;https://cdn.tailwindcss.com&gt;&#x27;,
-                    &#x27;&lt;https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap&gt;&#x27;
-                ];
-
-                self.addEventListener(&#x27;install&#x27;, function(event) {
-                    event.waitUntil(
-                        caches.open(CACHE_NAME)
-                            .then(function(cache) {
-                                return cache.addAll(urlsToCache);
-                            })
-                    );
-                });
-
-                self.addEventListener(&#x27;fetch&#x27;, function(event) {
-                    event.respondWith(
-                        caches.match(event.request)
-                            .then(function(response) {
-                                if (response) {
-                                    return response;
-                                }
-                                return fetch(event.request);
-                            }
-                        )
-                    );
-                });
-            `;
-
-            const blob = new Blob([swCode], { type: &#x27;application/javascript&#x27; });
-            const swUrl = URL.createObjectURL(blob);
-
-            navigator.serviceWorker.register(swUrl)
-                .then(function(registration) {
-                    console.log(&#x27;Service Worker registered successfully&#x27;);
-                })
-                .catch(function(error) {
-                    console.log(&#x27;Service Worker registration failed&#x27;);
-                });
+        
+        /* Touch-friendly sizing */
+        button {
+            min-height: 44px;
+            min-width: 44px;
         }
-    }
-
-    // PWA Installation
-    window.addEventListener(&#x27;beforeinstallprompt&#x27;, (e) =&gt; {
-        e.preventDefault();
-        deferredPrompt = e;
-        showInstallPrompt();
-    });
-
-    function showInstallPrompt() {
-        if (window.matchMedia(&#x27;(display-mode: standalone)&#x27;).matches) {
-            return; // Already installed
-        }
-        document.getElementById(&#x27;installPrompt&#x27;).style.display = &#x27;block&#x27;;
-    }
-
-    function hideInstallPrompt() {
-        document.getElementById(&#x27;installPrompt&#x27;).style.display = &#x27;none&#x27;;
-    }
-
-    async function installApp() {
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            deferredPrompt = null;
-        } else {
-            // Fallback for iOS
-            alert(&#x27;To install this app on iOS:\\n1. Tap the Share button\\n2. Select &quot;Add to Home Screen&quot;\\n3. Tap &quot;Add&quot;&#x27;);
-        }
-        hideInstallPrompt();
-    }
-
-    // Tab switching
-    document.getElementById(&#x27;billingTab&#x27;).addEventListener(&#x27;click&#x27;, function() {
-        showBillingSection();
-    });
-
-    document.getElementById(&#x27;salesTab&#x27;).addEventListener(&#x27;click&#x27;, function() {
-        showSalesSection();
-    });
-
-    document.getElementById(&#x27;menuTab&#x27;).addEventListener(&#x27;click&#x27;, function() {
-        showMenuSection();
-    });
-
-    function showBillingSection() {
-        document.getElementById(&#x27;billingSection&#x27;).classList.remove(&#x27;hidden&#x27;);
-        document.getElementById(&#x27;salesSection&#x27;).classList.add(&#x27;hidden&#x27;);
-        document.getElementById(&#x27;menuSection&#x27;).classList.add(&#x27;hidden&#x27;);
-        setActiveTab(&#x27;billingTab&#x27;);
-    }
-
-    function showSalesSection() {
-        document.getElementById(&#x27;salesSection&#x27;).classList.remove(&#x27;hidden&#x27;);
-        document.getElementById(&#x27;billingSection&#x27;).classList.add(&#x27;hidden&#x27;);
-        document.getElementById(&#x27;menuSection&#x27;).classList.add(&#x27;hidden&#x27;);
-        setActiveTab(&#x27;salesTab&#x27;);
-        updateSalesDisplay();
-    }
-
-    function showMenuSection() {
-        document.getElementById(&#x27;menuSection&#x27;).classList.remove(&#x27;hidden&#x27;);
-        document.getElementById(&#x27;billingSection&#x27;).classList.add(&#x27;hidden&#x27;);
-        document.getElementById(&#x27;salesSection&#x27;).classList.add(&#x27;hidden&#x27;);
-        setActiveTab(&#x27;menuTab&#x27;);
-    }
-
-    function setActiveTab(activeTabId) {
-        const tabs = [&#x27;billingTab&#x27;, &#x27;salesTab&#x27;, &#x27;menuTab&#x27;];
-        tabs.forEach(tabId =&gt; {
-            const tab = document.getElementById(tabId);
-            if (tabId === activeTabId) {
-                tab.classList.add(&#x27;bg-amber-600&#x27;, &#x27;text-white&#x27;);
-                tab.classList.remove(&#x27;bg-gray-200&#x27;, &#x27;text-gray-700&#x27;);
-            } else {
-                tab.classList.add(&#x27;bg-gray-200&#x27;, &#x27;text-gray-700&#x27;);
-                tab.classList.remove(&#x27;bg-amber-600&#x27;, &#x27;text-white&#x27;);
+        
+        /* Print styles */
+        @media print {
+            body * { visibility: hidden; }
+            #printArea, #printArea * { visibility: visible; }
+            #printArea { 
+                position: absolute; 
+                left: 0; 
+                top: 0; 
+                width: 100%;
+                background: white;
             }
+            .no-print { display: none !important; }
+        }
+        
+
+        
+
+    </style>
+</head>
+<body class="bg-gradient-to-br from-amber-50 to-orange-100 min-h-screen">
+
+
+
+
+    <!-- Print Area (Hidden) -->
+    <div id="printArea" style="display: none;"></div>
+
+    <div class="container mx-auto px-4 py-6">
+        <!-- Header -->
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+            <h1 class="text-3xl font-bold text-amber-800 text-center">☕ Hope Cafe POS</h1>
+            <div class="flex justify-center mt-4 space-x-4">
+                <button id="billingTab" class="px-6 py-2 bg-amber-600 text-white rounded-lg font-medium hover:bg-amber-700 transition-colors">Billing</button>
+                <button id="salesTab" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300 transition-colors">Sales History</button>
+                <button id="menuTab" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300 transition-colors">Menu Management</button>
+            </div>
+        </div>
+
+        <!-- Sales History Section -->
+        <div id="salesSection" class="space-y-6 hidden">
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">📊 Sales History</h2>
+                
+                <!-- Daily Summary -->
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h3 class="text-lg font-medium text-green-800">Today's Sales</h3>
+                        <p class="text-2xl font-bold text-green-600">₹<span id="todaysSales">0.00</span></p>
+                        <p class="text-sm text-green-600"><span id="todaysOrders">0</span> orders</p>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h3 class="text-lg font-medium text-blue-800">Total Orders</h3>
+                        <p class="text-2xl font-bold text-blue-600"><span id="totalOrders">0</span></p>
+                        <p class="text-sm text-blue-600">All time</p>
+                    </div>
+                    <div class="bg-amber-50 p-4 rounded-lg">
+                        <h3 class="text-lg font-medium text-amber-800">Average Order</h3>
+                        <p class="text-2xl font-bold text-amber-600">₹<span id="averageOrder">0.00</span></p>
+                        <p class="text-sm text-amber-600">Per order</p>
+                    </div>
+                </div>
+
+                <!-- Filter Options -->
+                <div class="mb-4">
+                    <div class="flex space-x-4">
+                        <select id="dateFilter" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent">
+                            <option value="today">Today</option>
+                            <option value="week">This Week</option>
+                            <option value="month">This Month</option>
+                            <option value="all">All Time</option>
+                        </select>
+                        <button onclick="exportSalesData()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">Export Data</button>
+                        <button onclick="showDataLocationInfo()" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors font-medium">Data Info</button>
+                        <button onclick="clearAllSales()" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors font-medium">Clear All Data</button>
+                    </div>
+                </div>
+
+                <!-- Sales Table -->
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse border border-gray-300 rounded-lg">
+                        <thead class="bg-amber-100">
+                            <tr>
+                                <th class="border border-gray-300 px-4 py-2 text-left">Order #</th>
+                                <th class="border border-gray-300 px-4 py-2 text-left">Customer</th>
+                                <th class="border border-gray-300 px-4 py-2 text-left">Date & Time</th>
+                                <th class="border border-gray-300 px-4 py-2 text-center">Items</th>
+                                <th class="border border-gray-300 px-4 py-2 text-right">Total</th>
+                                <th class="border border-gray-300 px-4 py-2 text-center">Payment</th>
+                            </tr>
+                        </thead>
+                        <tbody id="salesHistoryTable">
+                            <tr>
+                                <td colspan="6" class="border border-gray-300 px-4 py-8 text-center text-gray-500">No sales data available</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Management Section -->
+        <div id="menuSection" class="space-y-6 hidden">
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">📋 Menu Management</h2>
+                
+                <!-- Add Item Form -->
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <h3 class="text-lg font-medium text-gray-700 mb-3">Add New Item</h3>
+                        <div class="space-y-3">
+                            <input type="text" id="itemName" placeholder="Item Name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent">
+                            <select id="itemCategory" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent">
+                                <option value="">Select Category</option>
+                                <option value="Beverages">Beverages</option>
+                                <option value="Food">Food</option>
+                            </select>
+                            <input type="number" id="itemPrice" placeholder="Price" step="0.01" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent">
+                            <button onclick="addMenuItem()" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors font-medium">Add Item</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Current Menu Display -->
+                    <div>
+                        <h3 class="text-lg font-medium text-gray-700 mb-3">Current Menu</h3>
+                        <div id="menuDisplay" class="bg-gray-50 rounded-lg p-4 max-h-64 overflow-y-auto">
+                            <p class="text-gray-500 text-center">No items added yet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Billing Section -->
+        <div id="billingSection" class="space-y-6">
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">🧾 New Order</h2>
+                
+                <!-- Order Header -->
+                <div class="grid md:grid-cols-3 gap-4 mb-6 p-4 bg-amber-50 rounded-lg">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Order Number</label>
+                        <input type="text" id="orderNumber" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent" readonly>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Customer Name</label>
+                        <input type="text" id="customerName" placeholder="Enter customer name" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Date & Time</label>
+                        <input type="text" id="orderDateTime" class="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-100" readonly>
+                    </div>
+                </div>
+
+                <!-- Add Items Section -->
+                <div class="mb-6">
+                    <h3 class="text-lg font-medium text-gray-700 mb-3">Add Items to Order</h3>
+                    <div class="grid md:grid-cols-4 gap-3 p-4 bg-gray-50 rounded-lg">
+                        <select id="productSelect" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent">
+                            <option value="">Select Product</option>
+                        </select>
+                        <input type="number" id="quantity" placeholder="Quantity" min="1" value="1" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent">
+                        <div class="px-3 py-2 bg-white border border-gray-300 rounded-lg">
+                            <span class="text-gray-600">Rate: ₹</span><span id="selectedRate">0.00</span>
+                        </div>
+                        <button onclick="addToOrder()" class="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">Add Item</button>
+                    </div>
+                </div>
+
+                <!-- Order Items Table -->
+                <div class="mb-6">
+                    <h3 class="text-lg font-medium text-gray-700 mb-3">Order Items</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-collapse border border-gray-300 rounded-lg">
+                            <thead class="bg-amber-100">
+                                <tr>
+                                    <th class="border border-gray-300 px-4 py-2 text-left">Product</th>
+                                    <th class="border border-gray-300 px-4 py-2 text-center">Quantity</th>
+                                    <th class="border border-gray-300 px-4 py-2 text-right">Rate</th>
+                                    <th class="border border-gray-300 px-4 py-2 text-right">Amount</th>
+                                    <th class="border border-gray-300 px-4 py-2 text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orderItemsTable">
+                                <tr>
+                                    <td colspan="5" class="border border-gray-300 px-4 py-8 text-center text-gray-500">No items added to order</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Payment Mode</label>
+                            <select id="paymentMode" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent">
+                                <option value="Cash">Cash</option>
+                                <option value="Online">Online</option>
+                            </select>
+                        </div>
+                        <button onclick="completeOrder()" class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors font-medium text-lg">Complete & Print Order</button>
+                        <button onclick="clearOrder()" class="w-full bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600 transition-colors font-medium">Clear Order</button>
+                    </div>
+                    
+                    <div class="bg-amber-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Order Summary</h3>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span>Subtotal:</span>
+                                <span class="font-medium">₹<span id="subtotal">0.00</span></span>
+                            </div>
+                            <div class="flex justify-between text-xl font-bold text-amber-800 border-t pt-2">
+                                <span>Total Amount:</span>
+                                <span>₹<span id="totalAmount">0.00</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let menuItems = [];
+        let orderItems = [];
+        let orderCounter = 1;
+        let deferredPrompt;
+        let salesHistory = [];
+        let selectedProductIndex = null;
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            generateOrderNumber();
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+            
+            // Load data from localStorage
+            loadDataFromStorage();
+            
+            // Load sample menu items if none exist
+            if (menuItems.length === 0) {
+                loadSampleMenu();
+            }
+            
+            // Setup PWA for GitHub Pages
+            setupGitHubPagesPWA();
+            
+            // Register service worker for offline support
+            registerServiceWorker();
+            
+            // Setup PWA install prompt
+            setupPWAInstall();
         });
-    }
 
-    // Data Storage Functions
-    function saveDataToStorage() {
-        localStorage.setItem(&#x27;hopeMenuItems&#x27;, JSON.stringify(menuItems));
-        localStorage.setItem(&#x27;hopeSalesHistory&#x27;, JSON.stringify(salesHistory));
-        localStorage.setItem(&#x27;hopeOrderCounter&#x27;, orderCounter.toString());
-    }
 
-    function loadDataFromStorage() {
-        const savedMenu = localStorage.getItem(&#x27;hopeMenuItems&#x27;);
-        const savedSales = localStorage.getItem(&#x27;hopeSalesHistory&#x27;);
-        const savedCounter = localStorage.getItem(&#x27;hopeOrderCounter&#x27;);
 
-        if (savedMenu) {
-            menuItems = JSON.parse(savedMenu);
+        // Setup PWA for GitHub Pages
+        function setupGitHubPagesPWA() {
+            // Get the current URL to determine the correct paths
+            const currentUrl = window.location.href;
+            const baseUrl = currentUrl.substring(0, currentUrl.lastIndexOf('/') + 1);
+            
+            // Create manifest dynamically
+            const manifest = {
+                name: "Hope Cafe POS System",
+                short_name: "Hope Cafe POS",
+                description: "Complete Point of Sale system for Hope Cafe",
+                start_url: "./",
+                display: "standalone",
+                background_color: "#fffbf0",
+                theme_color: "#d92620",
+                orientation: "portrait-primary",
+                categories: ["business", "productivity"],
+                icons: [
+                    {
+                        src: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIj48cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgZmlsbD0iI2Q5MjYyMCIgcng9IjI0Ii8+PHRleHQgeD0iOTYiIHk9IjEyMCIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSI2MCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuKYlTwvdGV4dD48L3N2Zz4=",
+                        sizes: "192x192",
+                        type: "image/svg+xml",
+                        purpose: "any maskable"
+                    },
+                    {
+                        src: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgZmlsbD0iI2Q5MjYyMCIgcng9IjY0Ii8+PHRleHQgeD0iMjU2IiB5PSIzMjAiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTYwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+4piVPC90ZXh0Pjwvc3ZnPg==",
+                        sizes: "512x512",
+                        type: "image/svg+xml",
+                        purpose: "any maskable"
+                    }
+                ]
+            };
+            
+            // Create manifest blob and URL
+            const manifestBlob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+            const manifestUrl = URL.createObjectURL(manifestBlob);
+            
+            // Update manifest link
+            document.getElementById('manifest-placeholder').href = manifestUrl;
+        }
+
+        // PWA Install Setup
+        function setupPWAInstall() {
+            let deferredPrompt;
+            
+            // Listen for beforeinstallprompt event
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                showInstallButton();
+            });
+            
+            // Check if already installed
+            window.addEventListener('appinstalled', () => {
+                hideInstallButton();
+                console.log('PWA was installed');
+            });
+            
+            // Check if running as PWA
+            if (window.matchMedia('(display-mode: standalone)').matches) {
+                console.log('Running as PWA');
+            }
+        }
+
+        function showInstallButton() {
+            // Create install button if it doesn't exist
+            if (!document.getElementById('installButton')) {
+                const installBtn = document.createElement('button');
+                installBtn.id = 'installButton';
+                installBtn.innerHTML = '📱 Install App';
+                installBtn.className = 'fixed top-4 right-4 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-green-700 transition-colors font-medium z-50';
+                installBtn.onclick = installPWA;
+                document.body.appendChild(installBtn);
+            }
+        }
+
+        function hideInstallButton() {
+            const installBtn = document.getElementById('installButton');
+            if (installBtn) {
+                installBtn.remove();
+            }
+        }
+
+        async function installPWA() {
+            const installBtn = document.getElementById('installButton');
+            if (deferredPrompt && installBtn) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                
+                if (outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                    hideInstallButton();
+                } else {
+                    console.log('User dismissed the install prompt');
+                }
+                deferredPrompt = null;
+            }
+        }
+
+        // Service Worker Registration for Offline Support
+        function registerServiceWorker() {
+            if ('serviceWorker' in navigator) {
+                // Create service worker inline with GitHub Pages compatibility
+                const swCode = `
+                    const CACHE_NAME = 'hope-cafe-pos-v2';
+                    const urlsToCache = [
+                        './',
+                        './index.html',
+                        'https://cdn.tailwindcss.com',
+                        'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'
+                    ];
+
+                    self.addEventListener('install', function(event) {
+                        console.log('Service Worker installing...');
+                        event.waitUntil(
+                            caches.open(CACHE_NAME)
+                                .then(function(cache) {
+                                    console.log('Caching app shell');
+                                    return cache.addAll(urlsToCache);
+                                })
+                                .catch(function(error) {
+                                    console.log('Cache failed:', error);
+                                })
+                        );
+                        self.skipWaiting();
+                    });
+
+                    self.addEventListener('activate', function(event) {
+                        console.log('Service Worker activating...');
+                        event.waitUntil(
+                            caches.keys().then(function(cacheNames) {
+                                return Promise.all(
+                                    cacheNames.map(function(cacheName) {
+                                        if (cacheName !== CACHE_NAME) {
+                                            console.log('Deleting old cache:', cacheName);
+                                            return caches.delete(cacheName);
+                                        }
+                                    })
+                                );
+                            })
+                        );
+                        self.clients.claim();
+                    });
+
+                    self.addEventListener('fetch', function(event) {
+                        event.respondWith(
+                            caches.match(event.request)
+                                .then(function(response) {
+                                    // Return cached version or fetch from network
+                                    if (response) {
+                                        return response;
+                                    }
+                                    return fetch(event.request).catch(function() {
+                                        // If both cache and network fail, return offline page
+                                        if (event.request.destination === 'document') {
+                                            return caches.match('./index.html');
+                                        }
+                                    });
+                                })
+                        );
+                    });
+                `;
+
+                const blob = new Blob([swCode], { type: 'application/javascript' });
+                const swUrl = URL.createObjectURL(blob);
+
+                navigator.serviceWorker.register(swUrl)
+                    .then(function(registration) {
+                        console.log('Service Worker registered successfully:', registration.scope);
+                        
+                        // Update on reload
+                        registration.addEventListener('updatefound', () => {
+                            console.log('New service worker found');
+                        });
+                    })
+                    .catch(function(error) {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            }
+        }
+
+
+
+        // Tab switching
+        document.getElementById('billingTab').addEventListener('click', function() {
+            showBillingSection();
+        });
+
+        document.getElementById('salesTab').addEventListener('click', function() {
+            showSalesSection();
+        });
+
+        document.getElementById('menuTab').addEventListener('click', function() {
+            showMenuSection();
+        });
+
+        function showBillingSection() {
+            document.getElementById('billingSection').classList.remove('hidden');
+            document.getElementById('salesSection').classList.add('hidden');
+            document.getElementById('menuSection').classList.add('hidden');
+            setActiveTab('billingTab');
+        }
+
+        function showSalesSection() {
+            document.getElementById('salesSection').classList.remove('hidden');
+            document.getElementById('billingSection').classList.add('hidden');
+            document.getElementById('menuSection').classList.add('hidden');
+            setActiveTab('salesTab');
+            updateSalesDisplay();
+        }
+
+        function showMenuSection() {
+            document.getElementById('menuSection').classList.remove('hidden');
+            document.getElementById('billingSection').classList.add('hidden');
+            document.getElementById('salesSection').classList.add('hidden');
+            setActiveTab('menuTab');
+        }
+
+        function setActiveTab(activeTabId) {
+            const tabs = ['billingTab', 'salesTab', 'menuTab'];
+            tabs.forEach(tabId => {
+                const tab = document.getElementById(tabId);
+                if (tabId === activeTabId) {
+                    tab.classList.add('bg-amber-600', 'text-white');
+                    tab.classList.remove('bg-gray-200', 'text-gray-700');
+                } else {
+                    tab.classList.add('bg-gray-200', 'text-gray-700');
+                    tab.classList.remove('bg-amber-600', 'text-white');
+                }
+            });
+        }
+
+        // Data Storage Functions
+        function saveDataToStorage() {
+            localStorage.setItem('hopeMenuItems', JSON.stringify(menuItems));
+            localStorage.setItem('hopeSalesHistory', JSON.stringify(salesHistory));
+            localStorage.setItem('hopeOrderCounter', orderCounter.toString());
+        }
+
+        function loadDataFromStorage() {
+            const savedMenu = localStorage.getItem('hopeMenuItems');
+            const savedSales = localStorage.getItem('hopeSalesHistory');
+            const savedCounter = localStorage.getItem('hopeOrderCounter');
+
+            if (savedMenu) {
+                menuItems = JSON.parse(savedMenu);
+                updateMenuDisplay();
+                updateProductSelect();
+            }
+
+            if (savedSales) {
+                salesHistory = JSON.parse(savedSales);
+            }
+
+            if (savedCounter) {
+                orderCounter = parseInt(savedCounter);
+            }
+        }
+
+
+
+        // Load sample menu items
+        function loadSampleMenu() {
+            const sampleItems = [
+                { name: 'Espresso', category: 'Beverages', price: 80 },
+                { name: 'Cappuccino', category: 'Beverages', price: 120 },
+                { name: 'Latte', category: 'Beverages', price: 140 },
+                { name: 'Cold Coffee', category: 'Beverages', price: 160 },
+                { name: 'Tea', category: 'Beverages', price: 60 },
+                { name: 'Sandwich', category: 'Food', price: 180 },
+                { name: 'Burger', category: 'Food', price: 220 },
+                { name: 'Pasta', category: 'Food', price: 280 },
+                { name: 'Pizza Slice', category: 'Food', price: 150 },
+                { name: 'Muffin', category: 'Food', price: 100 }
+            ];
+
+            sampleItems.forEach(item => {
+                menuItems.push(item);
+            });
+            
             updateMenuDisplay();
             updateProductSelect();
         }
 
-        if (savedSales) {
-            salesHistory = JSON.parse(savedSales);
-        }
-
-        if (savedCounter) {
-            orderCounter = parseInt(savedCounter);
-        }
-    }
-
-
-
-    // Load sample menu items
-    function loadSampleMenu() {
-        const sampleItems = [
-            { name: &#x27;Espresso&#x27;, category: &#x27;Beverages&#x27;, price: 80 },
-            { name: &#x27;Cappuccino&#x27;, category: &#x27;Beverages&#x27;, price: 120 },
-            { name: &#x27;Latte&#x27;, category: &#x27;Beverages&#x27;, price: 140 },
-            { name: &#x27;Cold Coffee&#x27;, category: &#x27;Beverages&#x27;, price: 160 },
-            { name: &#x27;Tea&#x27;, category: &#x27;Beverages&#x27;, price: 60 },
-            { name: &#x27;Sandwich&#x27;, category: &#x27;Food&#x27;, price: 180 },
-            { name: &#x27;Burger&#x27;, category: &#x27;Food&#x27;, price: 220 },
-            { name: &#x27;Pasta&#x27;, category: &#x27;Food&#x27;, price: 280 },
-            { name: &#x27;Pizza Slice&#x27;, category: &#x27;Food&#x27;, price: 150 },
-            { name: &#x27;Muffin&#x27;, category: &#x27;Food&#x27;, price: 100 }
-        ];
-
-        sampleItems.forEach(item =&gt; {
-            menuItems.push(item);
-        });
-
-        updateMenuDisplay();
-        updateProductSelect();
-    }
-
-    // Menu Management Functions
-    function addMenuItem() {
-        const name = document.getElementById(&#x27;itemName&#x27;).value.trim();
-        const category = document.getElementById(&#x27;itemCategory&#x27;).value;
-        const price = parseFloat(document.getElementById(&#x27;itemPrice&#x27;).value);
-
-        if (!name || !category || !price || price &lt;= 0) {
-            alert(&#x27;Please fill all fields with valid values&#x27;);
-            return;
-        }
-
-        const newItem = { name, category, price };
-        menuItems.push(newItem);
-
-        updateMenuDisplay();
-        updateProductSelect();
-        saveDataToStorage();
-
-        // Clear form
-        document.getElementById(&#x27;itemName&#x27;).value = &#x27;&#x27;;
-        document.getElementById(&#x27;itemCategory&#x27;).value = &#x27;&#x27;;
-        document.getElementById(&#x27;itemPrice&#x27;).value = &#x27;&#x27;;
-    }
-
-    function updateMenuDisplay() {
-        const menuDisplay = document.getElementById(&#x27;menuDisplay&#x27;);
-
-        if (menuItems.length === 0) {
-            menuDisplay.innerHTML = &#x27;&lt;p class=&quot;text-gray-500 text-center&quot;&gt;No items added yet&lt;/p&gt;&#x27;;
-            return;
-        }
-
-        const beverages = menuItems.filter(item =&gt; item.category === &#x27;Beverages&#x27;);
-        const food = menuItems.filter(item =&gt; item.category === &#x27;Food&#x27;);
-
-        let html = &#x27;&#x27;;
-
-        if (beverages.length &gt; 0) {
-            html += &#x27;&lt;div class=&quot;mb-4&quot;&gt;&lt;h4 class=&quot;font-semibold text-amber-700 mb-2&quot;&gt;☕ Beverages&lt;/h4&gt;&#x27;;
-            beverages.forEach((item, index) =&gt; {
-                html += `&lt;div class=&quot;flex justify-between items-center py-1&quot;&gt;
-                    &lt;span&gt;${item.name}&lt;/span&gt;
-                    &lt;div&gt;
-                        &lt;span class=&quot;font-medium&quot;&gt;₹${item.price}&lt;/span&gt;
-                        &lt;button onclick=&quot;removeMenuItem(${menuItems.indexOf(item)})&quot; class=&quot;ml-2 text-red-600 hover:text-red-800&quot;&gt;×&lt;/button&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;`;
-            });
-            html += &#x27;&lt;/div&gt;&#x27;;
-        }
-
-        if (food.length &gt; 0) {
-            html += &#x27;&lt;div&gt;&lt;h4 class=&quot;font-semibold text-amber-700 mb-2&quot;&gt;🍽️ Food&lt;/h4&gt;&#x27;;
-            food.forEach((item, index) =&gt; {
-                html += `&lt;div class=&quot;flex justify-between items-center py-1&quot;&gt;
-                    &lt;span&gt;${item.name}&lt;/span&gt;
-                    &lt;div&gt;
-                        &lt;span class=&quot;font-medium&quot;&gt;₹${item.price}&lt;/span&gt;
-                        &lt;button onclick=&quot;removeMenuItem(${menuItems.indexOf(item)})&quot; class=&quot;ml-2 text-red-600 hover:text-red-800&quot;&gt;×&lt;/button&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;`;
-            });
-            html += &#x27;&lt;/div&gt;&#x27;;
-        }
-
-        menuDisplay.innerHTML = html;
-    }
-
-    function removeMenuItem(index) {
-        menuItems.splice(index, 1);
-        updateMenuDisplay();
-        updateProductSelect();
-        saveDataToStorage();
-    }
-
-    function updateProductSelect() {
-        const select = document.getElementById(&#x27;productSelect&#x27;);
-        select.innerHTML = &#x27;&lt;option value=&quot;&quot;&gt;Select Product&lt;/option&gt;&#x27;;
-
-        menuItems.forEach((item, index) =&gt; {
-            const option = document.createElement(&#x27;option&#x27;);
-            option.value = index;
-            option.textContent = `${item.name} - ₹${item.price}`;
-            select.appendChild(option);
-        });
-    }
-
-    // Billing Functions
-    function generateOrderNumber() {
-        const orderNum = `ORD${String(orderCounter).padStart(4, &#x27;0&#x27;)}`;
-        document.getElementById(&#x27;orderNumber&#x27;).value = orderNum;
-    }
-
-    function updateDateTime() {
-        const now = new Date();
-        const dateTime = now.toLocaleString(&#x27;en-IN&#x27;, {
-            year: &#x27;numeric&#x27;,
-            month: &#x27;2-digit&#x27;,
-            day: &#x27;2-digit&#x27;,
-            hour: &#x27;2-digit&#x27;,
-            minute: &#x27;2-digit&#x27;,
-            second: &#x27;2-digit&#x27;
-        });
-        document.getElementById(&#x27;orderDateTime&#x27;).value = dateTime;
-    }
-
-    // Update rate when product is selected
-    document.getElementById(&#x27;productSelect&#x27;).addEventListener(&#x27;change&#x27;, function() {
-        const selectedIndex = this.value;
-        const rateSpan = document.getElementById(&#x27;selectedRate&#x27;);
-
-        if (selectedIndex === &#x27;&#x27;) {
-            rateSpan.textContent = &#x27;0.00&#x27;;
-            selectedProductIndex = null;
-        } else {
-            selectedProductIndex = parseInt(selectedIndex);
-            const selectedItem = menuItems[selectedIndex];
-            rateSpan.textContent = selectedItem.price.toFixed(2);
-        }
-    });
-
-    function addToOrder() {
-        const quantity = parseInt(document.getElementById(&#x27;quantity&#x27;).value);
-
-        if (selectedProductIndex === null || !quantity || quantity &lt;= 0) {
-            alert(&#x27;Please select a product and enter valid quantity&#x27;);
-            return;
-        }
-
-        const product = menuItems[selectedProductIndex];
-        const amount = product.price * quantity;
-
-        const orderItem = {
-            name: product.name,
-            quantity: quantity,
-            rate: product.price,
-            amount: amount
-        };
-
-        orderItems.push(orderItem);
-        updateOrderTable();
-        updateOrderSummary();
-
-        // Reset form
-        document.getElementById(&#x27;productSelect&#x27;).value = &#x27;&#x27;;
-        document.getElementById(&#x27;quantity&#x27;).value = &#x27;1&#x27;;
-        document.getElementById(&#x27;selectedRate&#x27;).textContent = &#x27;0.00&#x27;;
-        selectedProductIndex = null;
-    }
-
-    function updateOrderTable() {
-        const tbody = document.getElementById(&#x27;orderItemsTable&#x27;);
-
-        if (orderItems.length === 0) {
-            tbody.innerHTML = &#x27;&lt;tr&gt;&lt;td colspan=&quot;5&quot; class=&quot;border border-gray-300 px-4 py-8 text-center text-gray-500&quot;&gt;No items added to order&lt;/td&gt;&lt;/tr&gt;&#x27;;
-            return;
-        }
-
-        let html = &#x27;&#x27;;
-        orderItems.forEach((item, index) =&gt; {
-            html += `
-                &lt;tr&gt;
-                    &lt;td class=&quot;border border-gray-300 px-4 py-2&quot;&gt;${item.name}&lt;/td&gt;
-                    &lt;td class=&quot;border border-gray-300 px-4 py-2 text-center&quot;&gt;${item.quantity}&lt;/td&gt;
-                    &lt;td class=&quot;border border-gray-300 px-4 py-2 text-right&quot;&gt;₹${item.rate.toFixed(2)}&lt;/td&gt;
-                    &lt;td class=&quot;border border-gray-300 px-4 py-2 text-right&quot;&gt;₹${item.amount.toFixed(2)}&lt;/td&gt;
-                    &lt;td class=&quot;border border-gray-300 px-4 py-2 text-center&quot;&gt;
-                        &lt;button onclick=&quot;removeOrderItem(${index})&quot; class=&quot;text-red-600 hover:text-red-800 font-medium&quot;&gt;Remove&lt;/button&gt;
-                    &lt;/td&gt;
-                &lt;/tr&gt;
-            `;
-        });
-
-        tbody.innerHTML = html;
-    }
-
-    function removeOrderItem(index) {
-        orderItems.splice(index, 1);
-        updateOrderTable();
-        updateOrderSummary();
-    }
-
-    function updateOrderSummary() {
-        const subtotal = orderItems.reduce((sum, item) =&gt; sum + item.amount, 0);
-        document.getElementById(&#x27;subtotal&#x27;).textContent = subtotal.toFixed(2);
-        document.getElementById(&#x27;totalAmount&#x27;).textContent = subtotal.toFixed(2);
-    }
-
-    function completeOrder() {
-        const customerName = document.getElementById(&#x27;customerName&#x27;).value.trim();
-        const paymentMode = document.getElementById(&#x27;paymentMode&#x27;).value;
-
-        if (!customerName) {
-            alert(&#x27;Please enter customer name&#x27;);
-            return;
-        }
-
-        if (orderItems.length === 0) {
-            alert(&#x27;Please add items to the order&#x27;);
-            return;
-        }
-
-        // Save order to sales history
-        const orderData = {
-            orderNumber: document.getElementById(&#x27;orderNumber&#x27;).value,
-            customerName: customerName,
-            dateTime: document.getElementById(&#x27;orderDateTime&#x27;).value,
-            items: [...orderItems],
-            total: parseFloat(document.getElementById(&#x27;totalAmount&#x27;).textContent),
-            paymentMode: paymentMode,
-            timestamp: new Date().getTime()
-        };
-
-        salesHistory.push(orderData);
-        saveDataToStorage();
-
-        // Generate and print receipt
-        printReceipt();
-
-        // Reset for next order
-        orderCounter++;
-        clearOrder();
-        generateOrderNumber();
-    }
-
-    // Sales History Functions
-    function updateSalesDisplay() {
-        const filter = document.getElementById(&#x27;dateFilter&#x27;).value;
-        const filteredSales = filterSalesByDate(filter);
-
-        updateSalesSummary(filteredSales);
-        updateSalesTable(filteredSales);
-    }
-
-    function filterSalesByDate(filter) {
-        const now = new Date();
-        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-
-        return salesHistory.filter(sale =&gt; {
-            const saleDate = new Date(sale.timestamp);
-
-            switch(filter) {
-                case &#x27;today&#x27;:
-                    return saleDate &gt;= today;
-                case &#x27;week&#x27;:
-                    const weekAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
-                    return saleDate &gt;= weekAgo;
-                case &#x27;month&#x27;:
-                    const monthAgo = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
-                    return saleDate &gt;= monthAgo;
-                default:
-                    return true;
-            }
-        });
-    }
-
-    function updateSalesSummary(filteredSales) {
-        const totalSales = filteredSales.reduce((sum, sale) =&gt; sum + sale.total, 0);
-        const totalOrders = filteredSales.length;
-        const averageOrder = totalOrders &gt; 0 ? totalSales / totalOrders : 0;
-
-        document.getElementById(&#x27;todaysSales&#x27;).textContent = totalSales.toFixed(2);
-        document.getElementById(&#x27;todaysOrders&#x27;).textContent = totalOrders;
-        document.getElementById(&#x27;totalOrders&#x27;).textContent = salesHistory.length;
-        document.getElementById(&#x27;averageOrder&#x27;).textContent = averageOrder.toFixed(2);
-    }
-
-    function updateSalesTable(filteredSales) {
-        const tbody = document.getElementById(&#x27;salesHistoryTable&#x27;);
-
-        if (filteredSales.length === 0) {
-            tbody.innerHTML = &#x27;&lt;tr&gt;&lt;td colspan=&quot;6&quot; class=&quot;border border-gray-300 px-4 py-8 text-center text-gray-500&quot;&gt;No sales data available&lt;/td&gt;&lt;/tr&gt;&#x27;;
-            return;
-        }
-
-        let html = &#x27;&#x27;;
-        filteredSales.reverse().forEach(sale =&gt; {
-            const itemCount = sale.items.reduce((sum, item) =&gt; sum + item.quantity, 0);
-            html += `
-                &lt;tr&gt;
-                    &lt;td class=&quot;border border-gray-300 px-4 py-2&quot;&gt;${sale.orderNumber}&lt;/td&gt;
-                    &lt;td class=&quot;border border-gray-300 px-4 py-2&quot;&gt;${sale.customerName}&lt;/td&gt;
-                    &lt;td class=&quot;border border-gray-300 px-4 py-2&quot;&gt;${sale.dateTime}&lt;/td&gt;
-                    &lt;td class=&quot;border border-gray-300 px-4 py-2 text-center&quot;&gt;${itemCount}&lt;/td&gt;
-                    &lt;td class=&quot;border border-gray-300 px-4 py-2 text-right&quot;&gt;₹${sale.total.toFixed(2)}&lt;/td&gt;
-                    &lt;td class=&quot;border border-gray-300 px-4 py-2 text-center&quot;&gt;${sale.paymentMode}&lt;/td&gt;
-                &lt;/tr&gt;
-            `;
-        });
-
-        tbody.innerHTML = html;
-    }
-
-    function clearAllSales() {
-        if (confirm(&#x27;Are you sure you want to clear all sales data? This cannot be undone.&#x27;)) {
-            salesHistory = [];
-            orderCounter = 1;
-            saveDataToStorage();
-            updateSalesDisplay();
-            generateOrderNumber();
-            alert(&#x27;All sales data has been cleared.&#x27;);
-        }
-    }
-
-    // Export sales data as JSON file
-    function exportSalesData() {
-        const exportData = {
-            salesHistory: salesHistory,
-            menuItems: menuItems,
-            orderCounter: orderCounter,
-            exportDate: new Date().toISOString(),
-            cafeInfo: {
-                name: &quot;Hope Cafe&quot;,
-                version: &quot;1.0&quot;
-            }
-        };
-
-        const dataStr = JSON.stringify(exportData, null, 2);
-        const dataBlob = new Blob([dataStr], { type: &#x27;application/json&#x27; });
-
-        const link = document.createElement(&#x27;a&#x27;);
-        link.href = URL.createObjectURL(dataBlob);
-        link.download = `hope-cafe-backup-${new Date().toISOString().split(&#x27;T&#x27;)[0]}.json`;
-
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        alert(&#x27;✅ Data exported successfully!\\n\\nFile saved to Downloads folder.\\nKeep this backup safe for data recovery.&#x27;);
-    }
-
-    // Show data location info
-    function showDataLocationInfo() {
-        const info = `
-</code></pre><p id="23f29cbe-78b1-8095-bbb0-d86253f738f6" class="">📱 HOPE CAFE POS - DATA STORAGE INFO</p><p id="23f29cbe-78b1-8063-b5fd-ff0c894638ef" class="">💾 WHERE YOUR DATA IS STORED:<br/>• All sales, menu items, and settings are stored locally on your iPad<br/>• Data location: Safari Browser Storage (LocalStorage)<br/>• No data is sent to external servers - completely private!<br/></p><p id="23f29cbe-78b1-80dc-b181-da6790828512" class="">📁 BACKUP &amp; EXPORT:<br/>• Use &quot;Export Data&quot; button to download backup files<br/>• Backup files are saved to your iPad&#x27;s Downloads folder<br/>• File format: JSON (can be opened with any text editor)<br/></p><p id="23f29cbe-78b1-808f-87dc-f40a2c7533ad" class="">🔄 DATA RECOVERY:<br/>• Your data persists even when offline<br/>• Data remains when you close and reopen the app<br/>• To restore: Keep backup files safe in Files app<br/></p><p id="23f29cbe-78b1-80e4-bc02-ccdd19d25eb8" class="">📊 WHAT&#x27;S INCLUDED IN BACKUPS:<br/>• All sales history and receipts<br/>• Complete menu items and prices<br/>• Order counter and settings<br/>• Export date and version info<br/></p><p id="23f29cbe-78b1-8096-b44b-d06597c25e42" class="">💡 BEST PRACTICES:<br/>• Export data weekly for safety<br/>• Store backup files in iCloud Drive<br/>• Keep multiple backup copies<br/>• Test restore process occasionally<br/></p><p id="23f29cbe-78b1-8064-977e-d37a09941444" class="">🔒 PRIVACY:<br/>• All data stays on your device<br/>• No internet required after installation<br/>• Complete data ownership and control<br/>`;<br/>alert(info);<br/>}<br/></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="23f29cbe-78b1-8084-94e2-ed49ece1fba5" class="code"><code class="language-HTML" style="white-space:pre-wrap;word-break:break-all">    // Add event listener for date filter
-    document.addEventListener(&#x27;DOMContentLoaded&#x27;, function() {
-        document.getElementById(&#x27;dateFilter&#x27;).addEventListener(&#x27;change&#x27;, updateSalesDisplay);
-    });
-
-    function printReceipt() {
-        const orderNumber = document.getElementById(&#x27;orderNumber&#x27;).value;
-        const customerName = document.getElementById(&#x27;customerName&#x27;).value;
-        const orderDateTime = document.getElementById(&#x27;orderDateTime&#x27;).value;
-        const paymentMode = document.getElementById(&#x27;paymentMode&#x27;).value;
-        const total = document.getElementById(&#x27;totalAmount&#x27;).textContent;
-
-        // Create receipt HTML optimized for desktop printing
-        let receiptHTML = `
-            &lt;div style=&quot;width: 300px; margin: 0 auto; font-family: &#x27;Courier New&#x27;, monospace; font-size: 12px; line-height: 1.4; color: #000; background: #fff; padding: 20px;&quot;&gt;
-                &lt;!-- Header --&gt;
-                &lt;div style=&quot;text-align: center; margin-bottom: 15px; border-bottom: 2px solid #000; padding-bottom: 10px;&quot;&gt;
-                    &lt;div style=&quot;font-size: 20px; font-weight: bold; margin-bottom: 5px;&quot;&gt;☕ HOPE CAFE&lt;/div&gt;
-                    &lt;div style=&quot;font-size: 12px; margin-bottom: 2px;&quot;&gt;123 Main Street, Your City&lt;/div&gt;
-                    &lt;div style=&quot;font-size: 12px; margin-bottom: 2px;&quot;&gt;Phone: +91 98765 43210&lt;/div&gt;
-                    &lt;div style=&quot;font-size: 12px;&quot;&gt;Email: info@hopecafe.com&lt;/div&gt;
-                &lt;/div&gt;
-
-                &lt;!-- Order Details --&gt;
-                &lt;div style=&quot;margin-bottom: 15px; font-size: 11px;&quot;&gt;
-                    &lt;div style=&quot;display: flex; justify-content: space-between; margin-bottom: 3px;&quot;&gt;
-                        &lt;strong&gt;Order #:&lt;/strong&gt; &lt;span&gt;${orderNumber}&lt;/span&gt;
-                    &lt;/div&gt;
-                    &lt;div style=&quot;display: flex; justify-content: space-between; margin-bottom: 3px;&quot;&gt;
-                        &lt;strong&gt;Customer:&lt;/strong&gt; &lt;span&gt;${customerName}&lt;/span&gt;
-                    &lt;/div&gt;
-                    &lt;div style=&quot;display: flex; justify-content: space-between; margin-bottom: 3px;&quot;&gt;
-                        &lt;strong&gt;Date:&lt;/strong&gt; &lt;span&gt;${new Date().toLocaleDateString(&#x27;en-IN&#x27;)}&lt;/span&gt;
-                    &lt;/div&gt;
-                    &lt;div style=&quot;display: flex; justify-content: space-between; margin-bottom: 3px;&quot;&gt;
-                        &lt;strong&gt;Time:&lt;/strong&gt; &lt;span&gt;${new Date().toLocaleTimeString(&#x27;en-IN&#x27;, {hour: &#x27;2-digit&#x27;, minute: &#x27;2-digit&#x27;})}&lt;/span&gt;
-                    &lt;/div&gt;
-                    &lt;div style=&quot;display: flex; justify-content: space-between;&quot;&gt;
-                        &lt;strong&gt;Payment:&lt;/strong&gt; &lt;span&gt;${paymentMode}&lt;/span&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
-
-                &lt;div style=&quot;border-bottom: 1px dashed #000; margin: 10px 0;&quot;&gt;&lt;/div&gt;
-
-                &lt;!-- Items Header --&gt;
-                &lt;div style=&quot;font-size: 11px; font-weight: bold; margin-bottom: 8px; border-bottom: 1px solid #000; padding-bottom: 5px;&quot;&gt;
-                    &lt;div style=&quot;display: flex; justify-content: space-between;&quot;&gt;
-                        &lt;span style=&quot;width: 45%;&quot;&gt;ITEM&lt;/span&gt;
-                        &lt;span style=&quot;width: 15%; text-align: center;&quot;&gt;QTY&lt;/span&gt;
-                        &lt;span style=&quot;width: 20%; text-align: right;&quot;&gt;RATE&lt;/span&gt;
-                        &lt;span style=&quot;width: 20%; text-align: right;&quot;&gt;AMOUNT&lt;/span&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
-
-                &lt;!-- Items List --&gt;
-                &lt;div style=&quot;margin-bottom: 15px;&quot;&gt;`;
-
-        orderItems.forEach(item =&gt; {
-            receiptHTML += `
-                &lt;div style=&quot;font-size: 11px; margin-bottom: 5px; padding: 3px 0;&quot;&gt;
-                    &lt;div style=&quot;display: flex; justify-content: space-between; align-items: center;&quot;&gt;
-                        &lt;span style=&quot;width: 45%; font-weight: 500;&quot;&gt;${item.name}&lt;/span&gt;
-                        &lt;span style=&quot;width: 15%; text-align: center;&quot;&gt;${item.quantity}&lt;/span&gt;
-                        &lt;span style=&quot;width: 20%; text-align: right;&quot;&gt;₹${item.rate.toFixed(2)}&lt;/span&gt;
-                        &lt;span style=&quot;width: 20%; text-align: right; font-weight: bold;&quot;&gt;₹${item.amount.toFixed(2)}&lt;/span&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;`;
-        });
-
-        receiptHTML += `
-                &lt;/div&gt;
-
-                &lt;div style=&quot;border-top: 2px solid #000; margin: 15px 0; padding-top: 10px;&quot;&gt;
-                    &lt;div style=&quot;display: flex; justify-content: space-between; font-size: 14px; font-weight: bold;&quot;&gt;
-                        &lt;span&gt;TOTAL AMOUNT:&lt;/span&gt;
-                        &lt;span&gt;₹${total}&lt;/span&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
-
-                &lt;!-- Footer --&gt;
-                &lt;div style=&quot;text-align: center; font-size: 11px; margin-top: 20px; border-top: 1px dashed #000; padding-top: 15px;&quot;&gt;
-                    &lt;div style=&quot;margin-bottom: 5px; font-weight: bold;&quot;&gt;Thank you for visiting Hope Cafe!&lt;/div&gt;
-                    &lt;div style=&quot;margin-bottom: 5px;&quot;&gt;We appreciate your business&lt;/div&gt;
-                    &lt;div style=&quot;margin-bottom: 10px;&quot;&gt;Please visit us again soon&lt;/div&gt;
-                    &lt;div style=&quot;font-size: 9px; color: #666;&quot;&gt;Powered by Hope Cafe POS System&lt;/div&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-        `;
-
-        // Set the print area content
-        document.getElementById(&#x27;printArea&#x27;).innerHTML = receiptHTML;
-        document.getElementById(&#x27;printArea&#x27;).style.display = &#x27;block&#x27;;
-
-        // Print the receipt
-        window.print();
-
-        // Hide print area after printing
-        setTimeout(() =&gt; {
-            document.getElementById(&#x27;printArea&#x27;).style.display = &#x27;none&#x27;;
-        }, 1000);
-    }
-
-    // Bluetooth thermal printer support
-    async function printToBluetoothPrinter(receiptHTML) {
-        try {
-            // Check if Web Bluetooth is supported
-            if (!navigator.bluetooth) {
-                console.log(&#x27;Web Bluetooth not supported, using regular print&#x27;);
-                window.print();
+        // Menu Management Functions
+        function addMenuItem() {
+            const name = document.getElementById('itemName').value.trim();
+            const category = document.getElementById('itemCategory').value;
+            const price = parseFloat(document.getElementById('itemPrice').value);
+
+            if (!name || !category || !price || price <= 0) {
+                alert('Please fill all fields with valid values');
                 return;
             }
 
-            // For now, use regular print as Web Bluetooth has limited support
-            // In a real implementation, you would connect to the specific printer
-            console.log(&#x27;Bluetooth printing attempted - using fallback print&#x27;);
-            window.print();
-
-            // Show helpful message for Bluetooth printing
-            setTimeout(() =&gt; {
-                if (confirm(&#x27;For Bluetooth printing:\\n\\n1. Ensure your thermal printer is paired with this device\\n2. Use your device\\&#x27;s print dialog to select the Bluetooth printer\\n3. Set paper size to 58mm or 80mm thermal\\n\\nWould you like to see printing tips?&#x27;)) {
-                    showPrintingTips();
-                }
-            }, 1000);
-
-        } catch (error) {
-            console.log(&#x27;Bluetooth printing failed, using regular print:&#x27;, error);
-            window.print();
+            const newItem = { name, category, price };
+            menuItems.push(newItem);
+            
+            updateMenuDisplay();
+            updateProductSelect();
+            saveDataToStorage();
+            
+            // Clear form
+            document.getElementById('itemName').value = '';
+            document.getElementById('itemCategory').value = '';
+            document.getElementById('itemPrice').value = '';
         }
-    }
 
-    function showPrintingTips() {
-        const tips = `
-</code></pre><p id="23f29cbe-78b1-80ae-a2d1-f6b29acd820c" class="">📱 THERMAL PRINTER SETUP TIPS:</p><p id="23f29cbe-78b1-8096-9f31-c40c9b27de86" class="">🔗 BLUETOOTH CONNECTION:<br/>• Pair your thermal printer in device settings<br/>• Ensure printer is turned on and ready<br/></p><p id="23f29cbe-78b1-80c4-8bc3-d954a8e7eb1d" class="">🖨️ PRINT SETTINGS:<br/>• Paper Size: 58mm or 80mm thermal<br/>• Margins: None or Minimum<br/>• Scale: 100% or Fit to Page<br/>• Quality: Draft or Fast<br/></p><p id="23f29cbe-78b1-80db-8192-edd74646bffa" class="">📋 PRINTER COMPATIBILITY:<br/>• ESC/POS compatible printers work best<br/>• Your Shreyans thermal printer supports standard commands<br/>• Use &quot;Print&quot; option and select your Bluetooth printer<br/></p><p id="23f29cbe-78b1-8002-b79a-c31f6ba6018d" class="">⚡ TROUBLESHOOTING:<br/>• If receipt is cut off, try &quot;Fit to Page&quot;<br/>• For better quality, use &quot;More Settings&quot; → &quot;Graphics&quot;<br/>• Ensure printer has paper and is not in error state<br/></p><p id="23f29cbe-78b1-80da-b82d-d9f3e459369c" class="">💡 TIP: Save this page as bookmark for easy access!<br/>`;<br/>alert(tips);<br/>}<br/></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="23f29cbe-78b1-8010-9f0b-f16809c73b4a" class="code"><code class="language-HTML" style="white-space:pre-wrap;word-break:break-all">    function clearOrder() {
-        orderItems = [];
-        document.getElementById(&#x27;customerName&#x27;).value = &#x27;&#x27;;
-        document.getElementById(&#x27;paymentMode&#x27;).value = &#x27;Cash&#x27;;
-        document.getElementById(&#x27;productSelect&#x27;).value = &#x27;&#x27;;
-        document.getElementById(&#x27;quantity&#x27;).value = &#x27;1&#x27;;
-        document.getElementById(&#x27;selectedRate&#x27;).textContent = &#x27;0.00&#x27;;
-        selectedProductIndex = null;
-        updateOrderTable();
-        updateOrderSummary();
-    }
-&lt;/script&gt;
-</code></pre><p id="23f29cbe-78b1-8063-b317-edef54243951" class="">&lt;script&gt;(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement(&#x27;script&#x27;);d.innerHTML=&quot;window.__CF$cv$params={r:&#x27;966c9280717195be&#x27;,t:&#x27;MTc1Mzc5MTY0Ny4wMDAwMDA=&#x27;};var a=document.createElement(&#x27;script&#x27;);a.nonce=&#x27;&#x27;;a.src=&#x27;/cdn-cgi/challenge-platform/scripts/jsd/main.js&#x27;;document.getElementsByTagName(&#x27;head&#x27;)[0].appendChild(a);&quot;;b.getElementsByTagName(&#x27;head&#x27;)[0].appendChild(d)}}if(document.body){var a=document.createElement(&#x27;iframe&#x27;);a.height=1;a.width=1;a.style.position=&#x27;absolute&#x27;;a.style.top=0;a.style.left=0;a.style.border=&#x27;none&#x27;;a.style.visibility=&#x27;hidden&#x27;;document.body.appendChild(a);if(&#x27;loading&#x27;!==document.readyState)c();else if(window.addEventListener)document.addEventListener(&#x27;DOMContentLoaded&#x27;,c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);&#x27;loading&#x27;!==document.readyState&amp;&amp;(document.onreadystatechange=e,c())}}}})();&lt;/script&gt;&lt;/body&gt;<br/>&lt;/html&gt;<br/></p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
+        function updateMenuDisplay() {
+            const menuDisplay = document.getElementById('menuDisplay');
+            
+            if (menuItems.length === 0) {
+                menuDisplay.innerHTML = '<p class="text-gray-500 text-center">No items added yet</p>';
+                return;
+            }
+
+            const beverages = menuItems.filter(item => item.category === 'Beverages');
+            const food = menuItems.filter(item => item.category === 'Food');
+
+            let html = '';
+            
+            if (beverages.length > 0) {
+                html += '<div class="mb-4"><h4 class="font-semibold text-amber-700 mb-2">☕ Beverages</h4>';
+                beverages.forEach((item, index) => {
+                    html += `<div class="flex justify-between items-center py-1">
+                        <span>${item.name}</span>
+                        <div>
+                            <span class="font-medium">₹${item.price}</span>
+                            <button onclick="removeMenuItem(${menuItems.indexOf(item)})" class="ml-2 text-red-600 hover:text-red-800">×</button>
+                        </div>
+                    </div>`;
+                });
+                html += '</div>';
+            }
+
+            if (food.length > 0) {
+                html += '<div><h4 class="font-semibold text-amber-700 mb-2">🍽️ Food</h4>';
+                food.forEach((item, index) => {
+                    html += `<div class="flex justify-between items-center py-1">
+                        <span>${item.name}</span>
+                        <div>
+                            <span class="font-medium">₹${item.price}</span>
+                            <button onclick="removeMenuItem(${menuItems.indexOf(item)})" class="ml-2 text-red-600 hover:text-red-800">×</button>
+                        </div>
+                    </div>`;
+                });
+                html += '</div>';
+            }
+
+            menuDisplay.innerHTML = html;
+        }
+
+        function removeMenuItem(index) {
+            menuItems.splice(index, 1);
+            updateMenuDisplay();
+            updateProductSelect();
+            saveDataToStorage();
+        }
+
+        function updateProductSelect() {
+            const select = document.getElementById('productSelect');
+            select.innerHTML = '<option value="">Select Product</option>';
+            
+            menuItems.forEach((item, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.textContent = `${item.name} - ₹${item.price}`;
+                select.appendChild(option);
+            });
+        }
+
+        // Billing Functions
+        function generateOrderNumber() {
+            const orderNum = `ORD${String(orderCounter).padStart(4, '0')}`;
+            document.getElementById('orderNumber').value = orderNum;
+        }
+
+        function updateDateTime() {
+            const now = new Date();
+            const dateTime = now.toLocaleString('en-IN', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            document.getElementById('orderDateTime').value = dateTime;
+        }
+
+        // Update rate when product is selected
+        document.getElementById('productSelect').addEventListener('change', function() {
+            const selectedIndex = this.value;
+            const rateSpan = document.getElementById('selectedRate');
+            
+            if (selectedIndex === '') {
+                rateSpan.textContent = '0.00';
+                selectedProductIndex = null;
+            } else {
+                selectedProductIndex = parseInt(selectedIndex);
+                const selectedItem = menuItems[selectedIndex];
+                rateSpan.textContent = selectedItem.price.toFixed(2);
+            }
+        });
+
+        function addToOrder() {
+            const quantity = parseInt(document.getElementById('quantity').value);
+
+            if (selectedProductIndex === null || !quantity || quantity <= 0) {
+                alert('Please select a product and enter valid quantity');
+                return;
+            }
+
+            const product = menuItems[selectedProductIndex];
+            const amount = product.price * quantity;
+
+            const orderItem = {
+                name: product.name,
+                quantity: quantity,
+                rate: product.price,
+                amount: amount
+            };
+
+            orderItems.push(orderItem);
+            updateOrderTable();
+            updateOrderSummary();
+
+            // Reset form
+            document.getElementById('productSelect').value = '';
+            document.getElementById('quantity').value = '1';
+            document.getElementById('selectedRate').textContent = '0.00';
+            selectedProductIndex = null;
+        }
+
+        function updateOrderTable() {
+            const tbody = document.getElementById('orderItemsTable');
+            
+            if (orderItems.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="border border-gray-300 px-4 py-8 text-center text-gray-500">No items added to order</td></tr>';
+                return;
+            }
+
+            let html = '';
+            orderItems.forEach((item, index) => {
+                html += `
+                    <tr>
+                        <td class="border border-gray-300 px-4 py-2">${item.name}</td>
+                        <td class="border border-gray-300 px-4 py-2 text-center">${item.quantity}</td>
+                        <td class="border border-gray-300 px-4 py-2 text-right">₹${item.rate.toFixed(2)}</td>
+                        <td class="border border-gray-300 px-4 py-2 text-right">₹${item.amount.toFixed(2)}</td>
+                        <td class="border border-gray-300 px-4 py-2 text-center">
+                            <button onclick="removeOrderItem(${index})" class="text-red-600 hover:text-red-800 font-medium">Remove</button>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            tbody.innerHTML = html;
+        }
+
+        function removeOrderItem(index) {
+            orderItems.splice(index, 1);
+            updateOrderTable();
+            updateOrderSummary();
+        }
+
+        function updateOrderSummary() {
+            const subtotal = orderItems.reduce((sum, item) => sum + item.amount, 0);
+            document.getElementById('subtotal').textContent = subtotal.toFixed(2);
+            document.getElementById('totalAmount').textContent = subtotal.toFixed(2);
+        }
+
+        function completeOrder() {
+            const customerName = document.getElementById('customerName').value.trim();
+            const paymentMode = document.getElementById('paymentMode').value;
+
+            if (!customerName) {
+                alert('Please enter customer name');
+                return;
+            }
+
+            if (orderItems.length === 0) {
+                alert('Please add items to the order');
+                return;
+            }
+
+            // Save order to sales history
+            const orderData = {
+                orderNumber: document.getElementById('orderNumber').value,
+                customerName: customerName,
+                dateTime: document.getElementById('orderDateTime').value,
+                items: [...orderItems],
+                total: parseFloat(document.getElementById('totalAmount').textContent),
+                paymentMode: paymentMode,
+                timestamp: new Date().getTime()
+            };
+
+            salesHistory.push(orderData);
+            saveDataToStorage();
+
+            // Generate and print receipt
+            printReceipt();
+
+            // Reset for next order
+            orderCounter++;
+            clearOrder();
+            generateOrderNumber();
+        }
+
+        // Sales History Functions
+        function updateSalesDisplay() {
+            const filter = document.getElementById('dateFilter').value;
+            const filteredSales = filterSalesByDate(filter);
+            
+            updateSalesSummary(filteredSales);
+            updateSalesTable(filteredSales);
+        }
+
+        function filterSalesByDate(filter) {
+            const now = new Date();
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            
+            return salesHistory.filter(sale => {
+                const saleDate = new Date(sale.timestamp);
+                
+                switch(filter) {
+                    case 'today':
+                        return saleDate >= today;
+                    case 'week':
+                        const weekAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
+                        return saleDate >= weekAgo;
+                    case 'month':
+                        const monthAgo = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
+                        return saleDate >= monthAgo;
+                    default:
+                        return true;
+                }
+            });
+        }
+
+        function updateSalesSummary(filteredSales) {
+            const totalSales = filteredSales.reduce((sum, sale) => sum + sale.total, 0);
+            const totalOrders = filteredSales.length;
+            const averageOrder = totalOrders > 0 ? totalSales / totalOrders : 0;
+
+            document.getElementById('todaysSales').textContent = totalSales.toFixed(2);
+            document.getElementById('todaysOrders').textContent = totalOrders;
+            document.getElementById('totalOrders').textContent = salesHistory.length;
+            document.getElementById('averageOrder').textContent = averageOrder.toFixed(2);
+        }
+
+        function updateSalesTable(filteredSales) {
+            const tbody = document.getElementById('salesHistoryTable');
+            
+            if (filteredSales.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="border border-gray-300 px-4 py-8 text-center text-gray-500">No sales data available</td></tr>';
+                return;
+            }
+
+            let html = '';
+            filteredSales.reverse().forEach(sale => {
+                const itemCount = sale.items.reduce((sum, item) => sum + item.quantity, 0);
+                html += `
+                    <tr>
+                        <td class="border border-gray-300 px-4 py-2">${sale.orderNumber}</td>
+                        <td class="border border-gray-300 px-4 py-2">${sale.customerName}</td>
+                        <td class="border border-gray-300 px-4 py-2">${sale.dateTime}</td>
+                        <td class="border border-gray-300 px-4 py-2 text-center">${itemCount}</td>
+                        <td class="border border-gray-300 px-4 py-2 text-right">₹${sale.total.toFixed(2)}</td>
+                        <td class="border border-gray-300 px-4 py-2 text-center">${sale.paymentMode}</td>
+                    </tr>
+                `;
+            });
+            
+            tbody.innerHTML = html;
+        }
+
+        function clearAllSales() {
+            if (confirm('Are you sure you want to clear all sales data? This cannot be undone.')) {
+                salesHistory = [];
+                orderCounter = 1;
+                saveDataToStorage();
+                updateSalesDisplay();
+                generateOrderNumber();
+                alert('All sales data has been cleared.');
+            }
+        }
+
+        // Export sales data as JSON file
+        function exportSalesData() {
+            const exportData = {
+                salesHistory: salesHistory,
+                menuItems: menuItems,
+                orderCounter: orderCounter,
+                exportDate: new Date().toISOString(),
+                cafeInfo: {
+                    name: "Hope Cafe",
+                    version: "1.0"
+                }
+            };
+
+            const dataStr = JSON.stringify(exportData, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(dataBlob);
+            link.download = `hope-cafe-backup-${new Date().toISOString().split('T')[0]}.json`;
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            alert('✅ Data exported successfully!\n\nFile saved to Downloads folder.\nKeep this backup safe for data recovery.');
+        }
+
+        // Show data location info
+        function showDataLocationInfo() {
+            const info = `
+📱 HOPE CAFE POS - DATA STORAGE INFO
+
+💾 WHERE YOUR DATA IS STORED:
+• All sales, menu items, and settings are stored locally on your iPad
+• Data location: Safari Browser Storage (LocalStorage)
+• No data is sent to external servers - completely private!
+
+📁 BACKUP & EXPORT:
+• Use "Export Data" button to download backup files
+• Backup files are saved to your iPad's Downloads folder
+• File format: JSON (can be opened with any text editor)
+
+🔄 DATA RECOVERY:
+• Your data persists even when offline
+• Data remains when you close and reopen the app
+• To restore: Keep backup files safe in Files app
+
+📊 WHAT'S INCLUDED IN BACKUPS:
+• All sales history and receipts
+• Complete menu items and prices
+• Order counter and settings
+• Export date and version info
+
+💡 BEST PRACTICES:
+• Export data weekly for safety
+• Store backup files in iCloud Drive
+• Keep multiple backup copies
+• Test restore process occasionally
+
+🔒 PRIVACY:
+• All data stays on your device
+• No internet required after installation
+• Complete data ownership and control
+            `;
+            alert(info);
+        }
+
+        // Add event listener for date filter
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('dateFilter').addEventListener('change', updateSalesDisplay);
+        });
+
+        function printReceipt() {
+            const orderNumber = document.getElementById('orderNumber').value;
+            const customerName = document.getElementById('customerName').value;
+            const orderDateTime = document.getElementById('orderDateTime').value;
+            const paymentMode = document.getElementById('paymentMode').value;
+            const total = document.getElementById('totalAmount').textContent;
+
+            // Create receipt HTML optimized for desktop printing
+            let receiptHTML = `
+                <div style="width: 300px; margin: 0 auto; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.4; color: #000; background: #fff; padding: 20px;">
+                    <!-- Header -->
+                    <div style="text-align: center; margin-bottom: 15px; border-bottom: 2px solid #000; padding-bottom: 10px;">
+                        <div style="font-size: 20px; font-weight: bold; margin-bottom: 5px;">☕ HOPE CAFE</div>
+                        <div style="font-size: 12px; margin-bottom: 2px;">123 Main Street, Your City</div>
+                        <div style="font-size: 12px; margin-bottom: 2px;">Phone: +91 98765 43210</div>
+                        <div style="font-size: 12px;">Email: info@hopecafe.com</div>
+                    </div>
+                    
+                    <!-- Order Details -->
+                    <div style="margin-bottom: 15px; font-size: 11px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                            <strong>Order #:</strong> <span>${orderNumber}</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                            <strong>Customer:</strong> <span>${customerName}</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                            <strong>Date:</strong> <span>${new Date().toLocaleDateString('en-IN')}</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                            <strong>Time:</strong> <span>${new Date().toLocaleTimeString('en-IN', {hour: '2-digit', minute: '2-digit'})}</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <strong>Payment:</strong> <span>${paymentMode}</span>
+                        </div>
+                    </div>
+                    
+                    <div style="border-bottom: 1px dashed #000; margin: 10px 0;"></div>
+                    
+                    <!-- Items Header -->
+                    <div style="font-size: 11px; font-weight: bold; margin-bottom: 8px; border-bottom: 1px solid #000; padding-bottom: 5px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="width: 45%;">ITEM</span>
+                            <span style="width: 15%; text-align: center;">QTY</span>
+                            <span style="width: 20%; text-align: right;">RATE</span>
+                            <span style="width: 20%; text-align: right;">AMOUNT</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Items List -->
+                    <div style="margin-bottom: 15px;">`;
+
+            orderItems.forEach(item => {
+                receiptHTML += `
+                    <div style="font-size: 11px; margin-bottom: 5px; padding: 3px 0;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="width: 45%; font-weight: 500;">${item.name}</span>
+                            <span style="width: 15%; text-align: center;">${item.quantity}</span>
+                            <span style="width: 20%; text-align: right;">₹${item.rate.toFixed(2)}</span>
+                            <span style="width: 20%; text-align: right; font-weight: bold;">₹${item.amount.toFixed(2)}</span>
+                        </div>
+                    </div>`;
+            });
+
+            receiptHTML += `
+                    </div>
+                    
+                    <div style="border-top: 2px solid #000; margin: 15px 0; padding-top: 10px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 14px; font-weight: bold;">
+                            <span>TOTAL AMOUNT:</span>
+                            <span>₹${total}</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Footer -->
+                    <div style="text-align: center; font-size: 11px; margin-top: 20px; border-top: 1px dashed #000; padding-top: 15px;">
+                        <div style="margin-bottom: 5px; font-weight: bold;">Thank you for visiting Hope Cafe!</div>
+                        <div style="margin-bottom: 5px;">We appreciate your business</div>
+                        <div style="margin-bottom: 10px;">Please visit us again soon</div>
+                        <div style="font-size: 9px; color: #666;">Powered by Hope Cafe POS System</div>
+                    </div>
+                </div>
+            `;
+
+            // Set the print area content
+            document.getElementById('printArea').innerHTML = receiptHTML;
+            document.getElementById('printArea').style.display = 'block';
+            
+            // Print the receipt
+            window.print();
+            
+            // Hide print area after printing
+            setTimeout(() => {
+                document.getElementById('printArea').style.display = 'none';
+            }, 1000);
+        }
+
+        // Bluetooth thermal printer support
+        async function printToBluetoothPrinter(receiptHTML) {
+            try {
+                // Check if Web Bluetooth is supported
+                if (!navigator.bluetooth) {
+                    console.log('Web Bluetooth not supported, using regular print');
+                    window.print();
+                    return;
+                }
+
+                // For now, use regular print as Web Bluetooth has limited support
+                // In a real implementation, you would connect to the specific printer
+                console.log('Bluetooth printing attempted - using fallback print');
+                window.print();
+                
+                // Show helpful message for Bluetooth printing
+                setTimeout(() => {
+                    if (confirm('For Bluetooth printing:\n\n1. Ensure your thermal printer is paired with this device\n2. Use your device\'s print dialog to select the Bluetooth printer\n3. Set paper size to 58mm or 80mm thermal\n\nWould you like to see printing tips?')) {
+                        showPrintingTips();
+                    }
+                }, 1000);
+
+            } catch (error) {
+                console.log('Bluetooth printing failed, using regular print:', error);
+                window.print();
+            }
+        }
+
+        function showPrintingTips() {
+            const tips = `
+📱 THERMAL PRINTER SETUP TIPS:
+
+🔗 BLUETOOTH CONNECTION:
+• Pair your thermal printer in device settings
+• Ensure printer is turned on and ready
+
+🖨️ PRINT SETTINGS:
+• Paper Size: 58mm or 80mm thermal
+• Margins: None or Minimum
+• Scale: 100% or Fit to Page
+• Quality: Draft or Fast
+
+📋 PRINTER COMPATIBILITY:
+• ESC/POS compatible printers work best
+• Your Shreyans thermal printer supports standard commands
+• Use "Print" option and select your Bluetooth printer
+
+⚡ TROUBLESHOOTING:
+• If receipt is cut off, try "Fit to Page"
+• For better quality, use "More Settings" → "Graphics"
+• Ensure printer has paper and is not in error state
+
+💡 TIP: Save this page as bookmark for easy access!
+            `;
+            alert(tips);
+        }
+
+        function clearOrder() {
+            orderItems = [];
+            document.getElementById('customerName').value = '';
+            document.getElementById('paymentMode').value = 'Cash';
+            document.getElementById('productSelect').value = '';
+            document.getElementById('quantity').value = '1';
+            document.getElementById('selectedRate').textContent = '0.00';
+            selectedProductIndex = null;
+            updateOrderTable();
+            updateOrderSummary();
+        }
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'966d86b541ba7edc',t:'MTc1MzgwMTY1MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
